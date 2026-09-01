@@ -9,7 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/button": "^2.2.32",
     "@heroui/react": "^3.2.4",
+    "@heroui/system": "^2.4.28",
+    "@heroui/theme": "^2.4.26",
     "@phosphor-icons/react": "^2.1.10",
     "@react-aria/ssr": "^3.10.1",
     "@react-aria/utils": "^3.34.1",
