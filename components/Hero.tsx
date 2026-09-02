@@ -16,7 +16,6 @@ import {
   Bell,
   CaretRight,
   Shield,
-  Activity,
 } from "@phosphor-icons/react";
 
 const easeOutCurve = [0.23, 1, 0.32, 1];
@@ -389,7 +388,7 @@ export function Hero() {
                   <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs">
                     <div className="flex items-center justify-between text-xs font-semibold text-slate-900 mb-1">
                       <span className="flex items-center gap-2">
-                        <Activity size={14} className="text-emerald-600" />
+                        <Pulse size={14} className="text-emerald-600" />
                         <span>Adjudication Confidence</span>
                       </span>
                       <span className="text-emerald-600 font-mono font-bold">99.8%</span>
