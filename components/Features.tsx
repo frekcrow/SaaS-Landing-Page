@@ -10,264 +10,199 @@ import {
   Lock,
   TrendUp,
   Brain,
+  ArrowRight,
 } from "@phosphor-icons/react";
-
-const easeOutCurve = [0.23, 1, 0.32, 1];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: easeOutCurve,
-    },
-  },
-};
 
 export function Features() {
   return (
-    <section id="features" className="w-full bg-[#FAFAFC] py-28 px-4 sm:px-8 lg:px-12 text-slate-900 border-b border-slate-200/80 relative">
+    <section id="features" className="w-full bg-[#FAFAFC] py-24 px-4 sm:px-6 lg:px-12 text-slate-900 border-b border-slate-200/80 relative">
       <div className="max-w-7xl mx-auto w-full">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: easeOutCurve }}
-          className="flex flex-col items-start gap-4 max-w-3xl mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono text-blue-700 font-semibold">
-            <Brain size={14} weight="fill" />
+        {/* Section Header - Clean Left-Aligned Narrative */}
+        <div className="max-w-3xl mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-mono font-medium text-slate-700">
+            <Brain size={14} weight="bold" className="text-slate-900" />
             <span>CLINICAL ARCHITECTURE</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
-            Architected for High-Throughput Clinical Excellence
+            Architected for High-Throughput Clinical Excellence.
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            Eliminate administrative fragmentation. Every feature is engineered around practitioner focus, zero-friction patient flow, and total regulatory compliance.
+            Eliminate administrative fragmentation. Every system component is engineered around practitioner focus, zero-friction patient flow, and absolute regulatory compliance.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Asymmetric Bento Grid Architecture - Light Mode */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5"
-        >
-          {/* Bento Card 1: AI Clinical Scribe & Dictation (2 columns wide) */}
-          <motion.div
-            variants={itemVariants}
-            className="md:col-span-2 group rounded-[2.5rem] bg-slate-200/50 border border-slate-200/90 p-2 sm:p-2.5 hover:border-blue-400 transition-all shadow-[0_10px_30px_-5px_rgba(15,23,42,0.04)]"
-          >
-            <div className="rounded-[2rem] bg-white border border-slate-200/80 p-6 sm:p-8 h-full flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/5 blur-[100px] pointer-events-none" />
-
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
-                    <Sparkle size={24} weight="fill" />
-                  </div>
-                  <span className="text-xs font-mono uppercase tracking-wider font-semibold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">
-                    AI Ambient Scribe
+        {/* Asymmetric Clinical Workflow Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Card 1: Ambient Scribe & SOAP Note Synthesis (7 Cols Wide) */}
+          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2.5">
+                  <Sparkle size={20} weight="bold" className="text-blue-600" />
+                  <span className="font-bold text-slate-900 text-lg tracking-tight">
+                    Ambient Consultation Scribe
                   </span>
                 </div>
-
-                <h3 className="text-2xl font-bold text-slate-900 tracking-tight mb-2">
-                  Ambient AI Consultation Scribe
-                </h3>
-
-                <p className="text-sm text-slate-600 leading-relaxed max-w-xl mb-6">
-                  Listens passively during patient consultations and auto-generates structured SOAP notes, EHR entries, and ICD-10 diagnostic codes in under 3 seconds.
-                </p>
-
-                {/* Interactive Scribe Preview Box */}
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 font-mono text-xs text-slate-700 space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-200 text-[11px] text-slate-500">
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      RECORDING ENCOUNTER — ROOM 4B
-                    </span>
-                    <span>CONFIDENTIAL EHR DRAFT</span>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <div className="text-blue-700 font-semibold">
-                      [Subjective] Patient reports persistent headache for 3 days, localized right temporal.
-                    </div>
-                    <div className="text-slate-600">
-                      [Objective] BP: 128/84. No nuchal rigidity. Cranial nerves II-XII intact.
-                    </div>
-                    <div className="text-slate-800 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
-                      <strong className="text-emerald-800">Suggested ICD-10:</strong> G44.209 (Tension-type headache, unspecified) — Confidence 99.4%
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 flex items-center gap-4 text-xs font-semibold text-slate-600">
-                <span className="flex items-center gap-1.5 text-blue-700">
-                  <Check size={14} weight="bold" /> 98% Note Accuracy
+                <span className="text-[11px] font-mono text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full font-semibold">
+                  3s Note Generation
                 </span>
-                <span>•</span>
-                <span>Saves 2.4 Hours Daily Per Physician</span>
               </div>
-            </div>
-          </motion.div>
 
-          {/* Bento Card 2: Zero-Trust HIPAA Vault (1 column) */}
-          <motion.div
-            variants={itemVariants}
-            className="group rounded-[2.5rem] bg-slate-200/50 border border-slate-200/90 p-2 sm:p-2.5 hover:border-teal-400 transition-all shadow-[0_10px_30px_-5px_rgba(15,23,42,0.04)]"
-          >
-            <div className="rounded-[2rem] bg-white border border-slate-200/80 p-6 sm:p-8 h-full flex flex-col justify-between relative overflow-hidden">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-11 h-11 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-700">
-                    <ShieldCheck size={24} weight="duotone" />
-                  </div>
-                  <Lock size={18} className="text-slate-400" />
+              <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                Passively records doctor-patient dialogue during visits and automatically synthesizes structured SOAP notes, EHR entries, and ICD-10 diagnostic codes.
+              </p>
+
+              {/* Realistic SOAP Output Preview */}
+              <div className="bg-slate-50 rounded-xl border border-slate-200/90 p-4 font-mono text-xs space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200 text-[10px] text-slate-500">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    RECORDING ENCOUNTER — ROOM 4B
+                  </span>
+                  <span>EHR DRAFT #4092</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 tracking-tight mb-2">
-                  Zero-Trust Encrypted Vault
-                </h3>
-
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Military-grade 256-bit AES encryption with immutable audit logs for every record query.
-                </p>
-
-                {/* Security Status Box */}
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-slate-600">HIPAA Compliance</span>
-                    <span className="text-emerald-700 font-bold">100% Passed</span>
+                <div className="space-y-1.5 text-slate-800">
+                  <div>
+                    <strong className="text-blue-700">[Subjective]</strong> Patient reports persistent headache for 3 days, localized right temporal.
                   </div>
-                  <div className="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
-                    <div className="bg-teal-500 h-1.5 rounded-full w-full" />
+                  <div>
+                    <strong className="text-slate-700">[Objective]</strong> BP: 128/84. No nuchal rigidity. Cranial nerves II-XII intact.
                   </div>
-                  <div className="text-[11px] text-slate-500 font-mono">
-                    AES-256-GCM Hardware Encrypted
+                  <div className="bg-white p-2.5 rounded-lg border border-slate-200 text-[11px] text-slate-900 mt-2">
+                    <strong>Suggested ICD-10 Code:</strong> G44.209 (Tension headache, unspecified) — <span className="text-emerald-700 font-bold">99.4% Match</span>
                   </div>
                 </div>
               </div>
-
-              <div className="mt-6 text-xs text-teal-700 font-semibold flex items-center gap-1">
-                <span>Instant BAA Agreement Included</span>
-                <span>→</span>
-              </div>
             </div>
-          </motion.div>
 
-          {/* Bento Card 3: Smart Triage & Scheduling (1 column) */}
-          <motion.div
-            variants={itemVariants}
-            className="group rounded-[2.5rem] bg-slate-200/50 border border-slate-200/90 p-2 sm:p-2.5 hover:border-amber-400 transition-all shadow-[0_10px_30px_-5px_rgba(15,23,42,0.04)]"
-          >
-            <div className="rounded-[2rem] bg-white border border-slate-200/80 p-6 sm:p-8 h-full flex flex-col justify-between relative overflow-hidden">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
-                    <CalendarCheck size={24} weight="duotone" />
-                  </div>
-                  <span className="text-[10px] font-mono text-amber-800 font-semibold bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
-                    Auto-Resolve
+            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span className="flex items-center gap-1.5 text-slate-700 font-semibold">
+                <Check size={14} weight="bold" className="text-blue-600" /> 98.2% Accuracy SLA
+              </span>
+              <span>Saves ~2.4 hrs / physician / day</span>
+            </div>
+          </div>
+
+          {/* Card 2: Zero-Trust Encrypted Record Vault (5 Cols Wide) */}
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2.5">
+                  <ShieldCheck size={20} weight="bold" className="text-slate-900" />
+                  <span className="font-bold text-slate-900 text-lg tracking-tight">
+                    Encrypted Record Vault
                   </span>
                 </div>
+                <Lock size={16} className="text-slate-400" />
+              </div>
 
-                <h3 className="text-xl font-bold text-slate-900 tracking-tight mb-2">
-                  Conflict-Free Triage Engine
-                </h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                Hardware-backed 256-bit AES encryption with immutable cryptographic audit logging for every single patient health record query.
+              </p>
 
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Dynamic slot optimization and automated SMS/email reminders reduce patient no-shows by 64%.
-                </p>
-
-                {/* Schedule Block Indicator */}
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-slate-900">09:30 AM — Cardiac Follow-Up</span>
-                    <span className="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded font-semibold">
-                      Confirmed
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-slate-500">
-                    SMS reminder acknowledged by patient (10m ago)
-                  </div>
+              {/* Compliance Status Block */}
+              <div className="bg-slate-50 rounded-xl border border-slate-200/90 p-4 space-y-3 font-mono text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">HIPAA Security Audit</span>
+                  <span className="text-emerald-700 font-bold">100% Passed</span>
+                </div>
+                <div className="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-slate-900 h-1.5 rounded-full w-full" />
+                </div>
+                <div className="text-[10px] text-slate-500">
+                  AES-256-GCM Hardware Security Module Enabled
                 </div>
               </div>
-
-              <div className="mt-6 text-xs text-amber-800 font-semibold">
-                64% No-Show Reduction Guaranteed
-              </div>
             </div>
-          </motion.div>
 
-          {/* Bento Card 4: Automated Revenue Cycle & Billing (2 columns wide) */}
-          <motion.div
-            variants={itemVariants}
-            className="md:col-span-2 group rounded-[2.5rem] bg-slate-200/50 border border-slate-200/90 p-2 sm:p-2.5 hover:border-emerald-400 transition-all shadow-[0_10px_30px_-5px_rgba(15,23,42,0.04)]"
-          >
-            <div className="rounded-[2rem] bg-white border border-slate-200/80 p-6 sm:p-8 h-full flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-80 h-80 bg-teal-500/5 blur-[100px] pointer-events-none" />
+            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-700 font-semibold">
+              <span>Instant BAA Agreement Included</span>
+              <ArrowRight size={14} weight="bold" className="text-slate-400" />
+            </div>
+          </div>
 
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-11 h-11 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
-                    <Receipt size={24} weight="duotone" />
-                  </div>
-                  <span className="text-xs font-mono uppercase tracking-wider font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
-                    Realtime Claims Engine
+          {/* Card 3: Dynamic Triage & Flow (5 Cols Wide) */}
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2.5">
+                  <CalendarCheck size={20} weight="bold" className="text-slate-900" />
+                  <span className="font-bold text-slate-900 text-lg tracking-tight">
+                    Triage & Flow Engine
                   </span>
                 </div>
+                <span className="text-[10px] font-mono text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded font-semibold">
+                  Auto-Resolve
+                </span>
+              </div>
 
-                <h3 className="text-2xl font-bold text-slate-900 tracking-tight mb-2">
-                  Automated Revenue Cycle & Claim Adjudication
-                </h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                Dynamic slot optimization and automated bi-directional SMS intake confirmations reduce patient no-show rates by 64%.
+              </p>
 
-                <p className="text-sm text-slate-600 leading-relaxed max-w-xl mb-6">
-                  Instant clearinghouse verification and automated claim scrubbing ensure 99.1% first-pass claim acceptance with automated patient co-pay processing.
-                </p>
-
-                {/* Claims Data Widget */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90">
-                    <div className="text-[11px] text-slate-500">Clean Claim Rate</div>
-                    <div className="text-xl font-bold text-emerald-700 font-mono mt-1">99.1%</div>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90">
-                    <div className="text-[11px] text-slate-500">Avg Reimbursement</div>
-                    <div className="text-xl font-bold text-slate-900 font-mono mt-1">4.2 Days</div>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90">
-                    <div className="text-[11px] text-slate-500">Denied Claims Recovery</div>
-                    <div className="text-xl font-bold text-blue-700 font-mono mt-1">+$32,400</div>
-                  </div>
+              <div className="bg-slate-50 rounded-xl border border-slate-200/90 p-3.5 space-y-2 text-xs font-mono">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900">09:30 AM — Cardiac Follow-Up</span>
+                  <span className="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded font-bold">
+                    Confirmed
+                  </span>
+                </div>
+                <div className="text-[11px] text-slate-500">
+                  SMS reminder acknowledged by patient (10m ago)
                 </div>
               </div>
+            </div>
 
-              <div className="mt-6 flex items-center gap-3 text-xs text-emerald-800 font-semibold">
-                <TrendUp size={16} />
-                <span>Integrated with Medicare, BCBS, Aetna, and 1,200+ Payers</span>
+            <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-mono text-slate-700 font-semibold">
+              64% Guaranteed Reduction in Unfilled Slots
+            </div>
+          </div>
+
+          {/* Card 4: Revenue Cycle & Claims Adjudication (7 Cols Wide) */}
+          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2.5">
+                  <Receipt size={20} weight="bold" className="text-emerald-700" />
+                  <span className="font-bold text-slate-900 text-lg tracking-tight">
+                    Revenue Cycle & Claim Adjudication
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">
+                  Clearinghouse Direct
+                </span>
+              </div>
+
+              <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                Real-time claim scrubbing and direct clearinghouse integration ensure 99.1% first-pass claim acceptance with automated co-pay processing.
+              </p>
+
+              {/* Claims Adjudication Metrics Grid */}
+              <div className="grid grid-cols-3 gap-3 font-mono text-xs">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/90">
+                  <div className="text-[10px] text-slate-500 font-semibold uppercase">Clean Claims</div>
+                  <div className="text-lg font-bold text-emerald-700 mt-0.5">99.1%</div>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/90">
+                  <div className="text-[10px] text-slate-500 font-semibold uppercase">Avg Payout</div>
+                  <div className="text-lg font-bold text-slate-900 mt-0.5">4.2 Days</div>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/90">
+                  <div className="text-[10px] text-slate-500 font-semibold uppercase">Payer Sync</div>
+                  <div className="text-lg font-bold text-blue-700 mt-0.5">1,200+</div>
+                </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+
+            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-mono text-slate-700 font-semibold">
+              <TrendUp size={16} className="text-emerald-600" />
+              <span>Integrated with Medicare, BCBS, Aetna, and major commercial payers</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
