@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between bg-[#050505] text-zinc-100 selection:bg-emerald-500/30 selection:text-emerald-300 font-sans antialiased">
-      <main className="flex flex-1 w-full flex-col items-center justify-center bg-[#050505]">
+    <div className="flex min-h-screen flex-col items-center justify-between bg-[#FAFAFC] text-slate-900 selection:bg-blue-500/15 selection:text-blue-700 font-sans antialiased overflow-x-hidden w-full">
+      <main className="flex flex-1 w-full flex-col items-center justify-center bg-[#FAFAFC]">
         <Hero />
         <Features />
         <Pricing />
