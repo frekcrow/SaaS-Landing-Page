@@ -132,7 +132,7 @@ export function Pricing() {
                 }`}
               >
                 <span>Annual Practice Billing</span>
-                <span className="px-2 py-0.5 rounded bg-emerald-500 text-slate-950 text-[10px] font-extrabold">
+                <span className="px-2 py-0.5 rounded bg-blue-600 text-white text-[10px] font-extrabold">
                   SAVE 20%
                 </span>
                 {isAnnual && (

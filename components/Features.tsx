@@ -166,12 +166,12 @@ export function Features() {
             <div>
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
-                  <Receipt size={20} weight="bold" className="text-emerald-700" />
+                  <Receipt size={20} weight="bold" className="text-blue-600" />
                   <span className="font-bold text-slate-900 text-lg tracking-tight">
                     Revenue Cycle & Claim Adjudication
                   </span>
                 </div>
-                <span className="text-[11px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">
+                <span className="text-[11px] font-mono text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full font-semibold">
                   Clearinghouse Direct
                 </span>
               </div>
@@ -198,7 +198,7 @@ export function Features() {
             </div>
 
             <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-mono text-slate-700 font-semibold">
-              <TrendUp size={16} className="text-emerald-600" />
+              <TrendUp size={16} className="text-blue-600" />
               <span>Integrated with Medicare, BCBS, Aetna, and major commercial payers</span>
             </div>
           </div>
