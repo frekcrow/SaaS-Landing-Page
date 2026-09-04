@@ -188,8 +188,9 @@ export function Hero() {
           className="lg:col-span-6 w-full"
         >
           {/* Outer Border Frame */}
-          <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.08)] overflow-hidden">
-            {/* Header Bar */}
+          <div className="rounded-[2.5rem] bg-slate-100 p-2 shadow-sm border border-slate-200/60">
+            <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.08)] overflow-hidden">
+              {/* Header Bar */}
             <div className="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between border-b border-slate-800">
               <div className="flex items-center gap-2.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
@@ -293,6 +294,7 @@ export function Hero() {
                 </span>
                 <span className="text-slate-600 font-medium">Synced to EHR</span>
               </div>
+            </div>
             </div>
           </div>
         </motion.div>
