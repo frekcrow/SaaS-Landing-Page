@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@heroui/button";
 import {
   Pulse,
@@ -33,8 +33,8 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 16 },
+const getItemVariants = (shouldReduceMotion: boolean | null) => ({
+  hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
   visible: {
     opacity: 1,
     y: 0,
@@ -43,9 +43,11 @@ const itemVariants = {
       ease: cubicEase,
     },
   },
-};
+});
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+  const itemVariants = getItemVariants(shouldReduceMotion);
   return (
     <section className="relative w-full bg-[#FAFAFC] text-slate-900 overflow-hidden pt-4 pb-20 px-4 sm:px-6 lg:px-12 border-b border-slate-200/80">
       {/* Subdued architectural background grids - clean, non-slop */}
@@ -95,7 +97,7 @@ export function Hero() {
           </a>
           <Button
             size="sm"
-            className="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 h-8 rounded-lg shadow-xs transition-all active:scale-[0.98]"
+            className="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 h-8 rounded-lg shadow-xs transition-transform duration-150 ease-out active:scale-[0.97]"
           >
             Request Demo
           </Button>
@@ -143,7 +145,7 @@ export function Hero() {
           >
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 h-11 text-sm rounded-xl shadow-sm transition-all active:scale-[0.98]"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 h-11 text-sm rounded-xl shadow-sm transition-transform duration-150 ease-out active:scale-[0.97]"
             >
               Start 14-Day Practice Trial
             </Button>
@@ -151,7 +153,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="bordered"
-              className="bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 font-semibold px-6 h-11 text-sm rounded-xl transition-all active:scale-[0.98]"
+              className="bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 font-semibold px-6 h-11 text-sm rounded-xl transition-transform duration-150 ease-out active:scale-[0.97]"
             >
               <Stethoscope size={18} weight="duotone" className="text-slate-600 mr-2" />
               <span>Explore Live Sandbox</span>

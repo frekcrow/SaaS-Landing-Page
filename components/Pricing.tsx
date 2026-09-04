@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@heroui/button";
 import {
   CheckCircle,
@@ -102,24 +103,31 @@ export function Pricing() {
 
           {/* Practice Billing Segment Switch */}
           <div className="pt-6 flex items-center justify-center gap-3">
-            <div className="bg-slate-200/80 p-1 rounded-xl border border-slate-300/60 inline-flex items-center text-xs font-mono font-bold">
+            <div className="bg-slate-200/80 p-1 rounded-xl border border-slate-300/60 inline-flex items-center text-xs font-mono font-bold relative">
               <button
                 type="button"
                 onClick={() => setIsAnnual(false)}
-                className={`px-4 py-2 rounded-lg transition-all ${
+                className={`relative z-10 px-4 py-2 rounded-lg transition-colors duration-200 ease-out ${
                   !isAnnual
-                    ? "bg-white text-slate-900 shadow-xs"
+                    ? "text-slate-900"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 Monthly Practice Billing
+                {!isAnnual && (
+                  <motion.div
+                    layoutId="pricingTab"
+                    className="absolute inset-0 bg-white rounded-lg shadow-xs -z-10"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  />
+                )}
               </button>
               <button
                 type="button"
                 onClick={() => setIsAnnual(true)}
-                className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${
+                className={`relative z-10 px-4 py-2 rounded-lg transition-colors duration-200 ease-out flex items-center gap-2 ${
                   isAnnual
-                    ? "bg-slate-900 text-white shadow-xs"
+                    ? "text-white"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -127,6 +135,13 @@ export function Pricing() {
                 <span className="px-2 py-0.5 rounded bg-emerald-500 text-slate-950 text-[10px] font-extrabold">
                   SAVE 20%
                 </span>
+                {isAnnual && (
+                  <motion.div
+                    layoutId="pricingTab"
+                    className="absolute inset-0 bg-slate-900 rounded-lg shadow-xs -z-10"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  />
+                )}
               </button>
             </div>
           </div>
@@ -140,7 +155,7 @@ export function Pricing() {
             return (
               <div
                 key={tier.id}
-                className={`rounded-2xl bg-white border p-6 sm:p-8 flex flex-col justify-between transition-all ${
+                className={`rounded-2xl bg-white border p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 ease-out ${
                   tier.featured
                     ? "border-slate-900 shadow-md ring-1 ring-slate-900/5 relative"
                     : "border-slate-200 shadow-xs hover:border-slate-300"
@@ -205,7 +220,7 @@ export function Pricing() {
                 <div className="pt-4 border-t border-slate-100">
                   <Button
                     size="lg"
-                    className={`w-full font-semibold text-xs h-11 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98] ${
+                    className={`w-full font-semibold text-xs h-11 rounded-xl transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2 ${
                       tier.featured
                         ? "bg-slate-900 hover:bg-slate-800 text-white shadow-xs"
                         : "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200"

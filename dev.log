@@ -1,3 +1,9 @@
 $ next dev
-/usr/bin/bash: line 1: next: command not found
-error: script "dev" exited with code 127
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 555ms
+✓ Running next.config.ts took 45ms
+
+○ Compiling / ...
+ GET / 200 in 5.3s (next.js: 4.8s, application-code: 506ms)
