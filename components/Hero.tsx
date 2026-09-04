@@ -275,9 +275,10 @@ export function Hero() {
                     <div>
                       <div className="text-xs font-bold text-slate-900">Maria Kostic, 38</div>
                       <div className="text-[11px] text-slate-500">Endocrinology — Lab Review</div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Zero contraindications found between prescribed Lisinopril and patient allergy history.
-                    </p>
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                        Zero contraindications found between prescribed Lisinopril and patient allergy history.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs">
