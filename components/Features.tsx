@@ -36,7 +36,7 @@ export function Features() {
         {/* Asymmetric Clinical Workflow Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Card 1: Ambient Scribe & SOAP Note Synthesis (7 Cols Wide) */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-colors duration-200 ease-out">
             <div>
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
@@ -87,7 +87,7 @@ export function Features() {
           </div>
 
           {/* Card 2: Zero-Trust Encrypted Record Vault (5 Cols Wide) */}
-          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-colors duration-200 ease-out">
             <div>
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
@@ -125,7 +125,7 @@ export function Features() {
           </div>
 
           {/* Card 3: Dynamic Triage & Flow (5 Cols Wide) */}
-          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-colors duration-200 ease-out">
             <div>
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
@@ -162,7 +162,7 @@ export function Features() {
           </div>
 
           {/* Card 4: Revenue Cycle & Claims Adjudication (7 Cols Wide) */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-all">
+          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-slate-300 transition-colors duration-200 ease-out">
             <div>
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
