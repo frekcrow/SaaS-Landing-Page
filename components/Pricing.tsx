@@ -7,9 +7,7 @@ import {
   CheckCircle,
   Pulse,
   Sparkle,
-  ArrowRight,
-  Shield,
-  FileText,
+  ArrowLeft,
 } from "@phosphor-icons/react";
 
 interface PricingTier {
@@ -27,56 +25,56 @@ interface PricingTier {
 const tiers: PricingTier[] = [
   {
     id: "solo",
-    name: "Solo Practice",
-    subtitle: "Built for independent physicians and specialty boutique practices.",
+    name: "العيادة المستقلة",
+    subtitle: "مصممة للأطباء المستقلين والعيادات التخصصية الخاصة.",
     monthlyPrice: "$149",
     annualPrice: "$119",
     features: [
-      "Up to 3 Licensed Practitioners",
-      "1,500 Active Patient Health Records",
-      "Core Electronic Health Record (EHR)",
-      "Automated Appointment Reminders (SMS)",
-      "Clearinghouse Direct Claims Scrubbing",
-      "HIPAA Compliance & BAA Execution",
-      "Standard Support (24h SLA)",
+      "حتى 3 ممارسين طبيين مرخصين",
+      "1,500 سجل صحي فعال للمرضى",
+      "نظام السجل الطبي الإلكتروني الأساسي (EHR)",
+      "تذكير آلي بالمواعيد (عبر الرسائل النصية)",
+      "تدقيق مباشر للمطالبات عبر المقاصة",
+      "الامتثال لمعايير HIPAA وتنفيذ اتفاقية BAA",
+      "دعم فني قياسي (خلال 24 ساعة)",
     ],
-    ctaText: "Start 14-Day Free Trial",
+    ctaText: "ابدأ تجربة مجانية لمدة 14 يوماً",
   },
   {
     id: "group",
-    name: "Multi-Specialty Group",
-    subtitle: "Designed for growing clinics requiring AI scribing and dynamic RCM.",
+    name: "المجمع الطبي التخصصي",
+    subtitle: "مصمم للعيادات المتنامية التي تتطلب الكاتب الذكي وإدارة الإيرادات الديناميكية.",
     monthlyPrice: "$399",
     annualPrice: "$319",
     featured: true,
-    badge: "Recommended Practice Plan",
+    badge: "الخطة الموصى بها للعيادات",
     features: [
-      "Up to 15 Licensed Practitioners",
-      "Unlimited Patient Records & Vault",
-      "Ambient AI Consultation Scribe (SOAP)",
-      "Automated Revenue Cycle Management",
-      "Telehealth Vitals & Patient Portal",
-      "HL7 FHIR Interoperability API",
-      "Dedicated Practice Manager (4h SLA)",
+      "حتى 15 ممارساً طبياً مرخصاً",
+      "سجلات مرضى وخزنة غير محدودة",
+      "كاتب الاستشارات الطبية المحيطي الذكي (SOAP)",
+      "إدارة دورة الإيرادات المؤتمتة",
+      "مؤشرات الطب الاتصالي وبوابة المرضى",
+      "واجهة برمجة تطبيقات HL7 FHIR للربط البيني",
+      "مدير ممارسة مخصص (استجابة خلال 4 ساعات)",
     ],
-    ctaText: "Upgrade Practice OS",
+    ctaText: "ترقية نظام تشغيل الممارسة",
   },
   {
     id: "health-system",
-    name: "Health System Network",
-    subtitle: "Architected for hospitals, ACOs, and multi-facility networks.",
-    monthlyPrice: "Custom",
-    annualPrice: "Custom",
+    name: "شبكة المؤسسات الصحية",
+    subtitle: "مصمم للمستشفيات، ومنظمات الرعاية الشاملة، والشبكات متعددة المرافق.",
+    monthlyPrice: "مخصص",
+    annualPrice: "مخصص",
     features: [
-      "Unlimited Practitioners & Locations",
-      "On-Premise / Private HIPAA Cloud",
-      "Legacy Epic / Cerner / Allscripts Sync",
-      "Custom AI Diagnostic Scribe Training",
-      "100% System Uptime SLA Guarantee",
-      "Dedicated Clinical Account Team",
-      "Custom Security & Audit Logs",
+      "عدد غير محدود من الممارسين والمواقع",
+      "سحابة HIPAA خاصة / خوادم محلية",
+      "مزامنة مع أنظمة Epic / Cerner / Allscripts",
+      "تدريب مخصص لكاتب التشخيص الذكي",
+      "ضمان الجاهزية والتشغيل بنسبة 100%",
+      "فريق حسابات سريرية مخصص",
+      "سجلات أمان وتدقيق مخصصة",
     ],
-    ctaText: "Contact Health Systems Team",
+    ctaText: "التواصل مع فريق الأنظمة الصحية",
   },
 ];
 
@@ -84,21 +82,21 @@ export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <section id="pricing" className="w-full bg-[#FAFAFC] py-24 px-4 sm:px-6 lg:px-12 text-slate-900 border-b border-slate-200/80 relative">
+    <section id="pricing" className="w-full bg-[#FAFAFC] py-24 px-4 sm:px-6 lg:px-12 text-slate-900 border-b border-slate-200/80 relative dir-rtl" dir="rtl">
       <div className="max-w-7xl mx-auto w-full">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-mono font-medium text-slate-700">
             <Pulse size={14} weight="bold" className="text-slate-900" />
-            <span>TRANSPARENT PRACTICE INVESTMENT</span>
+            <span>استثمار شفاف للممارسة الطبية</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
-            Predictable Pricing Built to Scale Your Practice.
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.2]">
+            أسعار واضحة ومحددة مصممة للتوسع مع ممارستك.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 font-normal">
-            No hidden claim fees or surprise data migration costs. Every tier includes HIPAA compliance and 256-bit AES encryption.
+          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+            بدون رسوم مطالبات مخفية أو تكاليف مفاجئة لنقل البيانات. تتضمن جميع الخطط الامتثال لنظام HIPAA وتشفير AES بمفتاح 256 بت.
           </p>
 
           {/* Practice Billing Segment Switch */}
@@ -113,7 +111,7 @@ export function Pricing() {
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                Monthly Practice Billing
+                فلترة شهرية
                 {!isAnnual && (
                   <motion.div
                     layoutId="pricingTab"
@@ -131,9 +129,9 @@ export function Pricing() {
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                <span>Annual Practice Billing</span>
+                <span>فلترة سنوية</span>
                 <span className="px-2 py-0.5 rounded bg-blue-600 text-white text-[10px] font-extrabold">
-                  SAVE 20%
+                  توفير 20%
                 </span>
                 {isAnnual && (
                   <motion.div
@@ -148,7 +146,7 @@ export function Pricing() {
         </div>
 
         {/* Pricing Cards Architecture */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch text-right">
           {tiers.map((tier) => {
             const price = isAnnual ? tier.annualPrice : tier.monthlyPrice;
 
@@ -184,9 +182,9 @@ export function Pricing() {
                       <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-mono tracking-tight">
                         {price}
                       </span>
-                      {price !== "Custom" && (
+                      {price !== "مخصص" && price !== "Custom" && (
                         <span className="text-xs text-slate-500 font-mono font-semibold">
-                          / practitioner / month
+                          / ممارس / شهرياً
                         </span>
                       )}
                     </div>
@@ -195,7 +193,7 @@ export function Pricing() {
                   {/* Included Features List */}
                   <div className="py-6 space-y-3">
                     <div className="text-[11px] font-mono uppercase text-slate-400 font-bold tracking-wider">
-                      Core Platform Capabilities
+                      قدرات المنصة الأساسية
                     </div>
 
                     <ul className="space-y-3">
@@ -227,7 +225,7 @@ export function Pricing() {
                     }`}
                   >
                     <span>{tier.ctaText}</span>
-                    <ArrowRight size={14} weight="bold" />
+                    <ArrowLeft size={14} weight="bold" />
                   </Button>
                 </div>
               </div>
