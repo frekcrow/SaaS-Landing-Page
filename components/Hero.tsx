@@ -190,36 +190,38 @@ export default function Hero() {
       </div>
 
       {/* Floating Animated Medical Image Assets */}
-      {assets.map((asset) => (
-        <motion.div
-          key={asset.src}
-          className={`${asset.className} drop-shadow-2xl pointer-events-none`}
-          initial={
-            shouldReduceMotion
-              ? { opacity: 1, x: 0 }
-              : { opacity: 0, x: asset.xOffset }
-          }
-          animate={{ opacity: 1, x: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 60,
-            damping: 18,
-            mass: 1,
-            delay: asset.delay,
-          }}
-        >
-          <Image
-            src={asset.src}
-            alt={asset.alt}
-            width={asset.width}
-            height={asset.height}
-            priority
-            quality={100}
-            unoptimized={true}
-            className="w-full h-auto object-contain"
-          />
-        </motion.div>
-      ))}
+      <div className="absolute inset-0 w-full h-full scale-90 origin-center pointer-events-none">
+        {assets.map((asset) => (
+          <motion.div
+            key={asset.src}
+            className={`${asset.className} drop-shadow-2xl pointer-events-none`}
+            initial={
+              shouldReduceMotion
+                ? { opacity: 1, x: 0 }
+                : { opacity: 0, x: asset.xOffset }
+            }
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              type: "spring",
+              stiffness: 60,
+              damping: 18,
+              mass: 1,
+              delay: asset.delay,
+            }}
+          >
+            <Image
+              src={asset.src}
+              alt={asset.alt}
+              width={asset.width}
+              height={asset.height}
+              priority
+              quality={100}
+              unoptimized={true}
+              className="w-full h-auto object-contain"
+            />
+          </motion.div>
+        ))}
+      </div>
 
       {/* Subtle Bottom Spacer */}
       <div className="h-8 w-full pointer-events-none relative z-10" />
