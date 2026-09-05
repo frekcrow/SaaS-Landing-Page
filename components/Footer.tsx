@@ -6,12 +6,11 @@ import {
   TwitterLogo,
   LinkedinLogo,
   GithubLogo,
-  Lock,
 } from "@phosphor-icons/react";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-white text-slate-600 border-t border-slate-200/80 relative">
+    <footer className="w-full bg-white text-slate-600 border-t border-slate-200/80 relative dir-rtl" dir="rtl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
         {/* Operational Status & Telemetry Header Bar */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/90 mb-12 shadow-2xs font-mono text-xs">
@@ -21,22 +20,22 @@ export function Footer() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             </span>
             <span className="text-slate-800 font-bold">
-              ClinicOS Systems Operational
+              جميع أنظمة ClinicOS تعمل بكفاءة
             </span>
             <span className="text-slate-400">•</span>
-            <span className="text-slate-600">99.99% Historical Uptime SLA</span>
+            <span className="text-slate-600">جاهزية تشغيل تاريخية بنسبة 99.99%</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-700 font-semibold">
             <span className="flex items-center gap-1.5">
               <ShieldCheck size={16} weight="bold" className="text-slate-900" />
-              <span>HIPAA & SOC 2 Type II Certified</span>
+              <span>معتمد وفق معايير HIPAA و SOC 2 Type II</span>
             </span>
           </div>
         </div>
 
         {/* Navigation Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200/80 text-right">
           {/* Brand & Technical Architecture Specs (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
@@ -49,7 +48,7 @@ export function Footer() {
             </div>
 
             <p className="text-xs text-slate-500 leading-relaxed max-w-sm font-normal">
-              The clinical operating system for modern medical practices, health system networks, and specialty clinics worldwide.
+              نظام التشغيل السريري للممارسات الطبية الحديثة، وشبكات الأنظمة الصحية، والعيادات التخصصية حول العالم.
             </p>
 
             <div className="pt-1 flex items-center gap-2 text-[10px] font-mono text-slate-500 font-medium">
@@ -60,7 +59,7 @@ export function Footer() {
                 AES-256-GCM
               </span>
               <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
-                BAA Ready
+                جاهز لاتفاقية BAA
               </span>
             </div>
           </div>
@@ -68,32 +67,32 @@ export function Footer() {
           {/* Column 1: Platform */}
           <div className="space-y-3 text-xs">
             <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">
-              Clinical Platform
+              المنصة السريرية
             </h4>
             <ul className="space-y-2 text-slate-600 font-medium">
               <li>
                 <a href="#features" className="hover:text-slate-900 transition-colors">
-                  Ambient AI Scribe
+                  الكاتب المحيطي بالذكاء الاصطناعي
                 </a>
               </li>
               <li>
                 <a href="#features" className="hover:text-slate-900 transition-colors">
-                  EHR & Encrypted Vault
+                  السجل الطبي والخزنة المشفرة
                 </a>
               </li>
               <li>
                 <a href="#features" className="hover:text-slate-900 transition-colors">
-                  Triage & Flow Queue
+                  طابور الفرز وتدفق المرضى
                 </a>
               </li>
               <li>
                 <a href="#features" className="hover:text-slate-900 transition-colors">
-                  Revenue Cycle Adjudication
+                  تسوية ودورة الإيرادات
                 </a>
               </li>
               <li>
                 <a href="#features" className="hover:text-slate-900 transition-colors">
-                  Telehealth Vitals Integration
+                  تكامل مؤشرات الطب الاتصالي
                 </a>
               </li>
             </ul>
@@ -102,27 +101,27 @@ export function Footer() {
           {/* Column 2: Trust & Compliance */}
           <div className="space-y-3 text-xs">
             <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">
-              Security & Trust
+              الأمان والامتثال
             </h4>
             <ul className="space-y-2 text-slate-600 font-medium">
               <li>
                 <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  HIPAA Security Guide
+                  دليل أمان HIPAA
                 </a>
               </li>
               <li>
                 <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  Execute BAA Online
+                  توقيع اتفاقية BAA إلكترونياً
                 </a>
               </li>
               <li>
                 <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  SOC 2 Type II Report
+                  تقرير SOC 2 Type II
                 </a>
               </li>
               <li>
                 <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  Data Residency & Backup
+                  إقامة البيانات والنسخ الاحتياطي
                 </a>
               </li>
             </ul>
@@ -131,27 +130,27 @@ export function Footer() {
           {/* Column 3: Resources */}
           <div className="space-y-3 text-xs">
             <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">
-              Practice Resources
+              موارد الممارسة
             </h4>
             <ul className="space-y-2 text-slate-600 font-medium">
               <li>
                 <a href="#" className="hover:text-slate-900 transition-colors">
-                  API & Webhook Documentation
+                  توثيق API و Webhooks
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-slate-900 transition-colors">
-                  Practice ROI Calculator
+                  حاسبة عائد الاستثمار للممارسة
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-slate-900 transition-colors">
-                  EHR Data Migration Guide
+                  دليل نقل بيانات السجل الطبي
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-slate-900 transition-colors">
-                  24/7 Clinical Support
+                  دعم سريري على مدار 24/7
                 </a>
               </li>
             </ul>
@@ -161,21 +160,21 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            <span>© 2026 ClinicOS Inc. Built for clinical precision.</span>
+            <span>© 2026 ClinicOS Inc. صُمم من أجل الدقة السريرية.</span>
           </div>
 
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-slate-900 transition-colors">
-              Privacy Policy
+              سياسة الخصوصية
             </a>
             <a href="#" className="hover:text-slate-900 transition-colors">
-              Terms of Service
+              شروط الخدمة
             </a>
             <a href="#" className="hover:text-slate-900 transition-colors">
-              BAA Agreement
+              اتفاقية BAA
             </a>
 
-            <div className="flex items-center gap-3 text-slate-600 ml-2">
+            <div className="flex items-center gap-3 text-slate-600 mr-2">
               <a href="#" aria-label="Twitter" className="hover:text-slate-900 transition-colors">
                 <TwitterLogo size={16} weight="fill" />
               </a>
