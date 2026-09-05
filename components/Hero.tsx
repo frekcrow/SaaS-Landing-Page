@@ -15,7 +15,7 @@ export default function Hero() {
 
   const assets = [
     {
-      src: "/lab-coate.webp",
+      src: "/images/lab-coate.webp",
       alt: "Lab Coat",
       width: 572,
       height: 567,
@@ -26,7 +26,7 @@ export default function Hero() {
       xOffset: -160,
     },
     {
-      src: "/needle.webp",
+      src: "/images/needle.webp",
       alt: "Needle",
       width: 289,
       height: 152,
@@ -37,7 +37,7 @@ export default function Hero() {
       xOffset: -120,
     },
     {
-      src: "/stethoscope.webp",
+      src: "/images/stethoscope.webp",
       alt: "Stethoscope",
       width: 363,
       height: 350,
@@ -48,7 +48,7 @@ export default function Hero() {
       xOffset: -140,
     },
     {
-      src: "/sheet.webp",
+      src: "/images/sheet.webp",
       alt: "Medical Sheet",
       width: 320,
       height: 376,
@@ -59,7 +59,7 @@ export default function Hero() {
       xOffset: 160,
     },
     {
-      src: "/pressure.webp",
+      src: "/images/pressure.webp",
       alt: "Blood Pressure Monitor",
       width: 329,
       height: 344,
@@ -72,7 +72,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative w-full min-h-[100vh] overflow-hidden bg-[url('/tiffany-bg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-between">
+    <section className="relative w-full min-h-[100vh] overflow-hidden bg-[url('/images/tiffany-bg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-between">
       {/* Top Navigation Bar */}
       <header className="w-full pt-6 px-4 sm:px-8 max-w-7xl mx-auto relative z-20">
         <nav className="w-full bg-white/95 backdrop-blur-md rounded-full shadow-xl shadow-slate-900/10 border border-slate-200/80 px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-200">
