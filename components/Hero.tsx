@@ -8,7 +8,7 @@ export default function Hero() {
       width: 572,
       height: 567,
       className:
-        "absolute -top-[5%] -left-[5%] w-[25vw] min-w-[250px] -rotate-12 object-contain",
+        "absolute -top-[-2%] -left-[21%] w-[45vw] min-w-[250px] -rotate-[-45deg] object-contain",
     },
     {
       src: "/needle.webp",
@@ -16,15 +16,16 @@ export default function Hero() {
       width: 289,
       height: 152,
       className:
-        "absolute top-[40%] left-[2%] w-[15vw] min-w-[150px] -rotate-[35deg] object-contain",
+        "absolute top-[30%] left-[-10%] w-[38vw] min-w-[150px] -rotate-[1deg] object-contain",
     },
     {
-      src: "/plaster.webp",
+      /*src: "/plaster.webp",
       alt: "Plaster",
       width: 128,
       height: 128,
       className:
         "absolute top-[48%] left-[16%] w-[8vw] min-w-[80px] -rotate-[25deg] object-contain",
+        */
     },
     {
       src: "/stethoscope.webp",
@@ -32,7 +33,7 @@ export default function Hero() {
       width: 363,
       height: 350,
       className:
-        "absolute -bottom-[5%] -left-[2%] w-[25vw] min-w-[250px] object-contain",
+        "absolute -bottom-[3%] -left-[15%] w-[45vw] min-w-[250px] -rotate-[-65deg] object-contain",
     },
     {
       src: "/sheet.webp",
@@ -40,31 +41,26 @@ export default function Hero() {
       width: 320,
       height: 376,
       className:
-        "absolute -top-[5%] -right-[5%] w-[22vw] min-w-[220px] rotate-[15deg] object-contain",
+        "absolute -top-[29%] -right-[27%] w-[59vw] min-w-[220px] rotate-[-8deg] object-contain",
     },
-    {
-      src: "/pills.webp",
-      alt: "Pills",
-      width: 193,
-      height: 189,
-      className:
-        "absolute top-[42%] right-[5%] w-[12vw] min-w-[120px] object-contain",
-    },
+    
     {
       src: "/pressure.webp",
       alt: "Blood Pressure Monitor",
       width: 329,
       height: 344,
       className:
-        "absolute -bottom-[2%] -right-[5%] w-[25vw] min-w-[250px] object-contain",
+        "absolute -bottom-[-2%] -right-[18%] w-[44vw] min-w-[250px] rotate-[57deg] object-contain",
     },
     {
+      /*
       src: "/egc.webp",
       alt: "ECG Graph",
       width: 128,
       height: 128,
       className:
         "absolute bottom-[20%] right-[20%] w-[10vw] min-w-[100px] hidden md:block opacity-50 object-contain",
+        */
     },
   ];
 
