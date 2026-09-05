@@ -2,6 +2,14 @@
 @plugin './hero.ts';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 
+@font-face {
+  font-family: 'Ping-Bold';
+  src: url('/fonts/Ping-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #fafafc;
   --foreground: #0f172a;
@@ -10,13 +18,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-ping), 'Ping-Bold', var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-ping), 'Ping-Bold', var(--font-geist-sans), sans-serif;
   overflow-x: hidden;
 }

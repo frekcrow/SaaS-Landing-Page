@@ -80,39 +80,36 @@ export default function Hero() {
         <nav className="w-full bg-white/95 backdrop-blur-md rounded-full shadow-xl shadow-slate-900/10 border border-slate-200/80 px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-200">
           {/* Brand Logo */}
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xs">
-              <Pulse size={20} weight="bold" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-slate-900 text-base sm:text-lg tracking-tight leading-none">
-                Aura Clinical
-              </span>
-              <span className="text-[10px] font-mono text-slate-500 font-medium tracking-wide">
-                PRACTICE OS
-              </span>
-            </div>
+            <Image
+              src="/images/logo-text.png"
+              alt="Aura Clinical Logo"
+              width={160}
+              height={40}
+              priority
+              className="h-8 sm:h-9 w-auto object-contain"
+            />
           </div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-xs font-mono font-semibold text-slate-600">
+          <div className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600">
             <a
               href="#features"
               className="hover:text-slate-900 transition-colors duration-200"
             >
-              Capabilities
+              الإمكانيات
             </a>
             <a
               href="#pricing"
               className="hover:text-slate-900 transition-colors duration-200"
             >
-              Plans & Pricing
+              الخطط والأسعار
             </a>
             <a
               href="#security"
               className="hover:text-slate-900 transition-colors duration-200 flex items-center gap-1.5"
             >
               <ShieldCheck size={14} className="text-emerald-600" />
-              <span>HIPAA Vault</span>
+              <span>خزنة HIPAA</span>
             </a>
           </div>
 
@@ -123,38 +120,28 @@ export default function Hero() {
               variant="light"
               className="hidden sm:inline-flex font-semibold text-xs text-slate-700 hover:text-slate-900 transition-transform duration-150 ease-out active:scale-[0.97]"
             >
-              Provider Portal
+              بوابة المزود
             </Button>
             <Button
               size="sm"
               className="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 h-9 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center gap-1.5"
             >
-              <span>Book Demo</span>
-              <ArrowRight size={13} weight="bold" />
+              <span>حجز عرض توضيحي</span>
+              <ArrowRight size={13} weight="bold" className="rotate-180" />
             </Button>
           </div>
         </nav>
       </header>
 
       {/* Hero Central Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center my-auto py-16 sm:py-24 space-y-6">
-        <motion.div
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-xs text-xs font-mono font-semibold text-slate-800"
-        >
-          <Sparkle size={14} weight="fill" className="text-blue-600" />
-          <span>NEXT-GEN CLINICAL INTELLIGENCE</span>
-        </motion.div>
-
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center my-auto py-16 sm:py-24 space-y-6" dir="rtl">
         <motion.h1
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08]"
+          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.12]"
         >
-          The High-Performance Operating System for Modern Practices.
+          نظام التشغيل عالي الأداء للعيادات والممارسات الطبية الحديثة.
         </motion.h1>
 
         <motion.p
@@ -163,7 +150,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="text-base sm:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-normal"
         >
-          Automate ambient SOAP note scribe, streamline patient flow, and accelerate revenue cycle management in one unified platform.
+          أتمتة المدوّن الصوتي المباشر لملاحظات SOAP، وتسهيل تدفق المرضى، وتسريع إدارة دورة الإيرادات في منصة واحدة موحدة.
         </motion.p>
 
         <motion.div
@@ -177,14 +164,14 @@ export default function Hero() {
             className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-7 h-12 rounded-full shadow-md transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2"
           >
             <CalendarCheck size={18} weight="bold" />
-            <span>Schedule Practice Audit</span>
+            <span>جدولة تدقيق العيادة</span>
           </Button>
           <Button
             size="lg"
             className="w-full sm:w-auto bg-white/90 hover:bg-white text-slate-900 border border-slate-200 font-semibold text-sm px-6 h-12 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2"
           >
             <PhoneCall size={18} weight="bold" className="text-slate-600" />
-            <span>Speak to Specialist</span>
+            <span>التحدث إلى أخصائي</span>
           </Button>
         </motion.div>
       </div>
