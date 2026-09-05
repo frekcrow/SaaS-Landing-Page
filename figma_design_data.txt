@@ -1,0 +1,65 @@
+# Figma Project: aws landing
+Last Modified: 2026-09-05T13:50:27Z
+
+## Page 1
+
+### Frame 1 (Type: FRAME)
+- Dimensions: Width 1000px, Height 562px
+- Position: Absolute (Left: -740px, Top: 137px)
+- Styles:
+  - Background Image: url({{FIGMA_IMAGE:b5b0df8bb53cf95dfa06159d483b111dd92fe714}})
+
+#### Elements inside Frame 1:
+
+1. sheet 1 (Type: VECTOR)
+   - Dimensions: Width 320px, Height 376px
+   - Position: Absolute (Left: 811px, Top: -154px)
+   - Styles:
+     - Background Image: url({{FIGMA_IMAGE:ddd4c72a2484a421a858138edd8c4d5122a2eb0d}})
+     - Box Shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+   - Export Info: PNG (sheet_1.png)
+
+2. lab-coate 1 (Type: VECTOR)
+   - Dimensions: Width 572px, Height 567px
+   - Position: Absolute (Left: -271px, Top: -136px)
+   - Styles:
+     - Background Image: url({{FIGMA_IMAGE:da1db42af138a3444930883722937cfe67133f31}})
+     - Box Shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+   - Export Info: PNG (lab-coate_1.png)
+
+3. pills 1 (Type: RECTANGLE)
+   - Dimensions: Width 193px, Height 189px
+   - Position: Absolute (Left: 756px, Top: 187px)
+   - Styles:
+     - Background Image: url({{FIGMA_IMAGE:25b5f3f94e253df7346f0c0e5ad84b9acb32607f}})
+     - Box Shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+   - Export Info: PNG (pills_1.png)
+
+4. needle 1 (Type: VECTOR)
+   - Dimensions: Width 289px, Height 152px
+   - Position: Absolute (Left: -55px, Top: 205px)
+   - Export Info: PNG (needle_1.png)
+
+5. stethoscope 1 (Type: VECTOR)
+   - Dimensions: Width 363px, Height 350px
+   - Position: Absolute (Left: -91px, Top: 249px)
+   - Styles:
+     - Background Image: url({{FIGMA_IMAGE:9cd7793cefd08847ced703a0a722a289dac428be}})
+     - Box Shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+   - Export Info: PNG (stethoscope_1.png)
+
+### Additional Elements on Page 1:
+
+- pressure 1 (Type: VECTOR)
+  - Dimensions: Width 329px, Height 344px
+  - Position: Absolute (Left: 41px, Top: 373px)
+  - Styles:
+     - Background Image: url({{FIGMA_IMAGE:caf037e36624a754c40720806e3dd9d0bfe5ee16}})
+     - Box Shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+  - Export Info: PNG (pressure_1.png)
+
+## Page 2
+(Empty Canvas)
+
+## Page 3
+(Empty Canvas)
