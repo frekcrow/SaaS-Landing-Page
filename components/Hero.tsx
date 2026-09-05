@@ -214,6 +214,8 @@ export default function Hero() {
             width={asset.width}
             height={asset.height}
             priority
+            quality={100}
+            unoptimized={true}
             className="w-full h-auto object-contain"
           />
         </motion.div>
