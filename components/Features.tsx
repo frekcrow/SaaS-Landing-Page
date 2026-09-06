@@ -224,26 +224,34 @@ interface AnimatedLeftGraphicProps {
 }
 
 function AnimatedLeftGraphic({ item, index, progress }: AnimatedLeftGraphicProps) {
-  const ranges = [
-    [0.0, 0.05, 0.20, 0.28],
-    [0.22, 0.30, 0.45, 0.53],
-    [0.47, 0.55, 0.70, 0.78],
-    [0.72, 0.80, 0.95, 1.0],
+  // التوزيع الزمني الدقيق لكل ميزة أثناء التمرير
+  const inputRanges = [
+    [0, 0.15, 0.25],          // الميزة الأولى (تظهر فوراً)
+    [0.15, 0.25, 0.45, 0.55], // الميزة الثانية
+    [0.45, 0.55, 0.75, 0.85], // الميزة الثالثة
+    [0.75, 0.85, 1.0],        // الميزة الرابعة
   ];
 
-  const currentRange = ranges[index];
-  const y = useTransform(progress, currentRange, [240, 0, 0, -240]);
-  const rotate = useTransform(progress, currentRange, [30, 0, 0, -30]);
-  const x = useTransform(progress, currentRange, [-40, 0, 0, -40]);
-  const opacity = useTransform(
-    progress,
-    currentRange,
-    index === 0 ? [1, 1, 1, 0] : index === 3 ? [0, 1, 1, 1] : [0, 1, 1, 0]
-  );
-  const scale = useTransform(progress, currentRange, [0.85, 1, 1, 0.85]);
+  // المخططات (اليسار) تنزلق من الأسفل (150) للمنتصف (0) ثم تختفي للأعلى (-150)
+  const yRanges = [
+    [0, 0, -150],
+    [150, 0, 0, -150],
+    [150, 0, 0, -150],
+    [150, 0, 0],
+  ];
+
+  const opacityRanges = [
+    [1, 1, 0],
+    [0, 1, 1, 0],
+    [0, 1, 1, 0],
+    [0, 1, 1],
+  ];
+
+  const y = useTransform(progress, inputRanges[index], yRanges[index]);
+  const opacity = useTransform(progress, inputRanges[index], opacityRanges[index]);
 
   return (
-    <motion.div style={{ y, rotate, x, opacity, scale }} className="absolute inset-0 flex items-center justify-center p-2">
+    <motion.div style={{ y, opacity }} className="absolute inset-0 flex items-center justify-center p-2">
       {item.renderGraphic()}
     </motion.div>
   );
@@ -256,26 +264,33 @@ interface AnimatedRightTextProps {
 }
 
 function AnimatedRightText({ item, index, progress }: AnimatedRightTextProps) {
-  const ranges = [
-    [0.0, 0.05, 0.20, 0.28],
-    [0.22, 0.30, 0.45, 0.53],
-    [0.47, 0.55, 0.70, 0.78],
-    [0.72, 0.80, 0.95, 1.0],
+  const inputRanges = [
+    [0, 0.15, 0.25],
+    [0.15, 0.25, 0.45, 0.55],
+    [0.45, 0.55, 0.75, 0.85],
+    [0.75, 0.85, 1.0],
   ];
 
-  const currentRange = ranges[index];
-  const y = useTransform(progress, currentRange, [-240, 0, 0, 240]);
-  const rotate = useTransform(progress, currentRange, [-30, 0, 0, 30]);
-  const x = useTransform(progress, currentRange, [40, 0, 0, 40]);
-  const opacity = useTransform(
-    progress,
-    currentRange,
-    index === 0 ? [1, 1, 1, 0] : index === 3 ? [0, 1, 1, 1] : [0, 1, 1, 0]
-  );
-  const scale = useTransform(progress, currentRange, [0.85, 1, 1, 0.85]);
+  // الشروحات (اليمين) تنزلق من الأعلى (-150) للمنتصف (0) ثم تختفي للأسفل (150)
+  const yRanges = [
+    [0, 0, 150],
+    [-150, 0, 0, 150],
+    [-150, 0, 0, 150],
+    [-150, 0, 0],
+  ];
+
+  const opacityRanges = [
+    [1, 1, 0],
+    [0, 1, 1, 0],
+    [0, 1, 1, 0],
+    [0, 1, 1],
+  ];
+
+  const y = useTransform(progress, inputRanges[index], yRanges[index]);
+  const opacity = useTransform(progress, inputRanges[index], opacityRanges[index]);
 
   return (
-    <motion.div style={{ y, rotate, x, opacity, scale }} className="absolute inset-0 flex flex-col justify-center px-4 text-right">
+    <motion.div style={{ y, opacity }} className="absolute inset-0 flex flex-col justify-center px-4 text-right">
       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold w-fit mb-4">
         <span>{item.badge}</span>
       </div>
@@ -305,9 +320,10 @@ export function Features() {
     offset: ["start start", "end end"],
   });
 
+  // ضبطت إعدادات الزنبرك لتكون أسرع وأنعم بكثير
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 24,
+    stiffness: 100, 
+    damping: 30, 
     restDelta: 0.001,
   });
 
@@ -317,7 +333,7 @@ export function Features() {
       {/* حاوية التمرير الملتصقة */}
       <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center select-none">
 
-        {/* الدائرة اليسرى (تم استخدام vh لضمان شكلها الدائري ومحاذاتها لمنتصف الشاشة) */}
+        {/* الدائرة اليسرى */}
         <div
           id="left-circle"
           className="absolute top-1/2 -translate-y-1/2 right-[50%] mr-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
