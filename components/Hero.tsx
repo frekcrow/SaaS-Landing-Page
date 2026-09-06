@@ -144,12 +144,10 @@ export default function Hero() {
               type="button"
               onClick={toggleLanguage}
               aria-label="Language Switcher"
-              className="flex items-center gap-2 text-xs font-semibold text-slate-800 hover:text-slate-900 transition-transform duration-150 ease-out active:scale-[0.95] cursor-pointer"
+              className="px-3.5 h-8 rounded-full bg-black text-white flex items-center gap-1.5 shadow-xs transition-transform duration-150 ease-out active:scale-[0.95] cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shrink-0 shadow-xs">
-                <Globe size={18} weight="regular" />
-              </div>
-              <span className="uppercase text-xs font-bold tracking-wide">
+              <Globe size={18} weight="regular" className="text-white shrink-0" />
+              <span className="uppercase text-xs font-bold tracking-wide text-white">
                 {currentLang}
               </span>
             </button>
@@ -220,11 +218,14 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Smooth White Gradient Fade at Section Boundary */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-0" />
+
       {/* Floating Animated Medical Image Assets */}
       {assets.map((asset) => (
         <motion.div
           key={asset.src}
-          className={`${asset.className} drop-shadow-2xl pointer-events-none`}
+          className={`${asset.className} drop-shadow-2xl pointer-events-none z-10`}
           initial={
             shouldReduceMotion
               ? { opacity: 1, x: 0 }
