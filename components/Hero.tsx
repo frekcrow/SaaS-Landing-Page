@@ -1,17 +1,60 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowRight,
-  ShieldCheck,
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+  useReducedMotion,
+} from "framer-motion";
+import {
+  Globe,
+  Sun,
+  Moon,
   CalendarCheck,
   PhoneCall,
 } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 
+const CAROUSEL_TEXTS = [
+  "استكشف نظام ATLAS الطبي",
+  "كن جزء من تكامل العيادات الطبية الكترونياً",
+  "يسرنا انك معنا اليوم",
+];
+
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [currentLang, setCurrentLang] = useState<"AR" | "EN">("AR");
+  const [isDark, setIsDark] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % CAROUSEL_TEXTS.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  const toggleLanguage = () => {
+    setCurrentLang((prev) => (prev === "AR" ? "EN" : "AR"));
+  };
+
+  const toggleTheme = () => {
+    setIsDark((prev) => !prev);
+  };
 
   const assets = [
     {
@@ -73,86 +116,186 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-[100vh] overflow-hidden bg-[url('/images/tiffany-bg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-between">
-      {/* Top Navigation Bar */}
-      <header className="w-full pt-6 px-4 sm:px-8 max-w-7xl mx-auto relative z-20">
-        <nav className="w-full bg-white/95 backdrop-blur-md rounded-full shadow-xl shadow-slate-900/10 border border-slate-200/80 px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-200">
+      {/* Top Navigation Bar - Sticky / Fixed Header with Framer Motion Scroll Animation */}
+      <header className="fixed top-0 left-0 right-0 z-50 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none flex justify-center">
+        <motion.nav
+          initial={false}
+          animate={{
+            maxWidth: isScrolled ? "540px" : "1280px",
+            paddingLeft: isScrolled ? "1.25rem" : "1.5rem",
+            paddingRight: isScrolled ? "1.25rem" : "1.5rem",
+            paddingTop: isScrolled ? "0.6rem" : "0.75rem",
+            paddingBottom: isScrolled ? "0.6rem" : "0.75rem",
+            boxShadow: isScrolled
+              ? "0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08)"
+              : "0 10px 15px -3px rgba(15, 23, 42, 0.08)",
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 220,
+            damping: 26,
+            mass: 0.8,
+          }}
+          className="pointer-events-auto w-full bg-white/95 backdrop-blur-md rounded-full border border-slate-200/80 flex items-center justify-between relative overflow-hidden"
+        >
           {/* Brand Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center shrink-0">
             <Image
               src="/images/logo-text.png"
-              alt="Brand Logo"
+              alt="Atlas Brand Logo"
               width={140}
               height={45}
               priority
-              className="h-8 sm:h-9 w-auto object-contain"
+              className="h-8 sm:h-9 w-auto object-contain transition-all duration-300"
             />
           </div>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600">
-            <a
-              href="#features"
-              className="hover:text-slate-900 transition-colors duration-200"
-            >
-              القدرات
-            </a>
-            <a
-              href="#pricing"
-              className="hover:text-slate-900 transition-colors duration-200"
-            >
-              الخطط والأسعار
-            </a>
-            <a
-              href="#security"
-              className="hover:text-slate-900 transition-colors duration-200 flex items-center gap-1.5"
-            >
-              <ShieldCheck size={14} className="text-emerald-600" />
-              <span>خزنة HIPAA</span>
-            </a>
-          </div>
+          {/* Continuous Vertical Text Carousel - Only visible in Collapsed State */}
+          <AnimatePresence>
+            {isScrolled && (
+              <motion.div
+                initial={{ opacity: 0, x: 10, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 10, scale: 0.95 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="flex-1 flex items-center justify-center px-3 sm:px-4 overflow-hidden h-7 relative"
+              >
+                <div className="relative w-full h-full flex items-center justify-center text-center">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={carouselIndex}
+                      initial={{ y: 16, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -16, opacity: 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 28,
+                      }}
+                      className="absolute font-semibold text-xs sm:text-sm text-slate-800 tracking-tight whitespace-nowrap"
+                    >
+                      {CAROUSEL_TEXTS[carouselIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          {/* Action CTAs */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Button
-              size="sm"
-              variant="light"
-              className="hidden sm:inline-flex font-semibold text-xs text-slate-700 hover:text-slate-900 transition-transform duration-150 ease-out active:scale-[0.97]"
-            >
-              بوابة الممارس الطبي
-            </Button>
-            <Button
-              size="sm"
-              className="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 h-9 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center gap-1.5"
-            >
-              <span>حجز عرض توضيحي</span>
-              <ArrowRight size={13} weight="bold" className="rotate-180" />
-            </Button>
-          </div>
-        </nav>
+          {/* Navigation Links - Hidden when scrolled */}
+          <AnimatePresence>
+            {!isScrolled && (
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="hidden md:flex items-center gap-7 lg:gap-8 text-xs font-semibold text-slate-600"
+              >
+                <a
+                  href="#"
+                  className="hover:text-slate-900 transition-colors duration-200"
+                >
+                  الرئيسية
+                </a>
+                <a
+                  href="#features"
+                  className="hover:text-slate-900 transition-colors duration-200"
+                >
+                  خدماتنا
+                </a>
+                <a
+                  href="#pricing"
+                  className="hover:text-slate-900 transition-colors duration-200"
+                >
+                  الاسعار
+                </a>
+                <a
+                  href="#about"
+                  className="hover:text-slate-900 transition-colors duration-200"
+                >
+                  من نحن
+                </a>
+                <a
+                  href="#contact"
+                  className="hover:text-slate-900 transition-colors duration-200"
+                >
+                  تواصل معنا
+                </a>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Action Minimalist Icon Buttons - Hidden when scrolled */}
+          <AnimatePresence>
+            {!isScrolled && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-2"
+              >
+                {/* Language Switcher Icon Button */}
+                <button
+                  type="button"
+                  onClick={toggleLanguage}
+                  aria-label="Language Switcher"
+                  className="p-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 transition-all duration-150 ease-out active:scale-[0.95] flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                >
+                  <Globe size={18} weight="regular" />
+                  <span className="uppercase text-[11px] tracking-wide">
+                    {currentLang}
+                  </span>
+                </button>
+
+                {/* Theme Switcher Icon Button */}
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label="Theme Switcher"
+                  className="p-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 transition-all duration-150 ease-out active:scale-[0.95] cursor-pointer"
+                >
+                  {isDark ? (
+                    <Sun size={18} weight="regular" className="text-amber-500" />
+                  ) : (
+                    <Moon size={18} weight="regular" className="text-slate-700" />
+                  )}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.nav>
       </header>
 
       {/* Hero Central Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center my-auto py-16 sm:py-24 space-y-6">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center my-auto pt-28 sm:pt-36 pb-16 sm:pb-20 -mt-2 sm:-mt-6 space-y-5 sm:space-y-6">
         <motion.h1
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          initial={
+            shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.2]"
+          className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.2]"
         >
-          نظام التشغيل عالي الأداء للممارسات الطبية الحديثة.
+          نظم ادارتك الطبية بلمح البصر
         </motion.h1>
 
         <motion.p
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={
+            shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="text-base sm:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-normal"
         >
-          أتمتة كتابة الملاحظات الطبية، وتيسير تدفق المرضى، وتسريع إدارة دورة الإيرادات في منصة واحدة موحدة.
+          اشرف على رحلة المريض من البداية الى النهاية واحفظها الكترونياً
         </motion.p>
 
         <motion.div
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={
+            shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2"
