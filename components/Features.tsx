@@ -45,7 +45,13 @@ function FeatureItemWrapper({
   const leftY = useTransform(
     scrollYProgress,
     item.range,
-    isLast ? [120, 0, 0] : [120, 0, -20, -40]
+    isLast ? [200, 0, 0] : [200, 0, -50, -200]
+  );
+
+  const leftRotate = useTransform(
+    scrollYProgress,
+    item.range,
+    isLast ? [15, 0, 0] : [15, 0, -5, -15]
   );
 
   const leftScale = useTransform(
@@ -63,7 +69,13 @@ function FeatureItemWrapper({
   const rightY = useTransform(
     scrollYProgress,
     item.range,
-    isLast ? [-120, 0, 0] : [-120, 0, 30, 60]
+    isLast ? [-200, 0, 0] : [-200, 0, 50, 200]
+  );
+
+  const rightRotate = useTransform(
+    scrollYProgress,
+    item.range,
+    isLast ? [-15, 0, 0] : [-15, 0, 5, 15]
   );
 
   const rightOpacity = useTransform(
@@ -112,6 +124,7 @@ function FeatureItemWrapper({
         <motion.div
           style={{
             y: leftY,
+            rotate: leftRotate,
             scale: leftScale,
             opacity: leftOpacity,
           }}
@@ -124,6 +137,7 @@ function FeatureItemWrapper({
         <motion.div
           style={{
             y: rightY,
+            rotate: rightRotate,
             opacity: rightOpacity,
           }}
           className="w-full space-y-5 text-right pointer-events-auto"
@@ -399,7 +413,7 @@ export function Features() {
     <section
       id="features"
       ref={containerRef}
-      className="relative w-full h-[350vh] bg-[#FAFAFC] border-b border-slate-200/80"
+      className="relative w-full h-[250vh] bg-[#FAFAFC] border-b border-slate-200/80"
     >
       {/* Sticky Content Container pinned to full viewport */}
       <div className="sticky top-0 h-screen w-full flex flex-col justify-between py-6 sm:py-10 px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
