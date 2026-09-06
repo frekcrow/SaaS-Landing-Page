@@ -5,6 +5,8 @@ import Image from "next/image";
 import {
   motion,
   useReducedMotion,
+  useScroll,
+  useMotionValueEvent,
 } from "framer-motion";
 import {
   Globe,
@@ -19,6 +21,17 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [currentLang, setCurrentLang] = useState<"AR" | "EN">("AR");
   const [isDark, setIsDark] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 50 && !isScrolled) {
+      setIsScrolled(true);
+    } else if (latest <= 50 && isScrolled) {
+      setIsScrolled(false);
+    }
+  });
 
   const toggleLanguage = () => {
     setCurrentLang((prev) => (prev === "AR" ? "EN" : "AR"));
@@ -88,11 +101,37 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-[100vh] overflow-hidden bg-[url('/images/tiffany-bg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center">
-      {/* Top Navigation Bar - Sticky / Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none flex justify-center">
-        <nav className="pointer-events-auto w-full max-w-[1280px] bg-white/95 backdrop-blur-md rounded-full border border-slate-200/80 px-6 py-3 shadow-md flex items-center justify-between relative">
+      {/* Top Navigation Bar - Sticky / Fixed Header with Scroll-driven morphing */}
+      <motion.header
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center"
+        animate={{
+          paddingTop: isScrolled ? 0 : 20,
+          paddingLeft: isScrolled ? 0 : 16,
+          paddingRight: isScrolled ? 0 : 16,
+        }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <motion.nav
+          className="pointer-events-auto w-full flex items-center justify-between relative bg-white/95 backdrop-blur-md border border-slate-200/80"
+          animate={{
+            maxWidth: isScrolled ? "100%" : "1280px",
+            borderRadius: isScrolled ? "0px" : "9999px",
+            paddingTop: isScrolled ? "6px" : "12px",
+            paddingBottom: isScrolled ? "6px" : "12px",
+            paddingLeft: isScrolled ? "32px" : "24px",
+            paddingRight: isScrolled ? "32px" : "24px",
+            boxShadow: isScrolled
+              ? "0 1px 3px 0 rgba(0, 0, 0, 0.05)"
+              : "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+          }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Brand Logo */}
-          <div className="flex items-center shrink-0">
+          <motion.div
+            className="flex items-center shrink-0"
+            animate={{ scale: isScrolled ? 0.85 : 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
             <Image
               src="/images/logo-text.png"
               alt="Atlas Brand Logo"
@@ -101,10 +140,17 @@ export default function Hero() {
               priority
               className="h-8 sm:h-9 w-auto object-contain"
             />
-          </div>
+          </motion.div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10 text-sm sm:text-base font-semibold text-slate-700">
+          <motion.div
+            className="hidden md:flex items-center text-slate-700 font-semibold"
+            animate={{
+              gap: isScrolled ? "24px" : "36px",
+              fontSize: isScrolled ? "13px" : "15px",
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
             <a
               href="#"
               className="hover:text-slate-900 transition-colors duration-200"
@@ -135,39 +181,48 @@ export default function Hero() {
             >
               تواصل معنا
             </a>
-          </div>
+          </motion.div>
 
-          {/* Action Buttons: Language Switcher & Theme Switcher with Solid Black Circular Backgrounds */}
+          {/* Action Buttons: Language Switcher & Theme Switcher */}
           <div className="flex items-center gap-2.5">
             {/* Language Switcher Button */}
-            <button
+            <motion.button
               type="button"
               onClick={toggleLanguage}
               aria-label="Language Switcher"
-              className="px-3.5 h-8 rounded-full bg-black text-white flex items-center gap-1.5 shadow-xs transition-transform duration-150 ease-out active:scale-[0.95] cursor-pointer"
+              className="px-3.5 rounded-full bg-black text-white flex items-center gap-1.5 shadow-xs transition-transform duration-150 ease-out active:scale-[0.95] cursor-pointer"
+              animate={{
+                height: isScrolled ? "28px" : "32px",
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <Globe size={18} weight="regular" className="text-white shrink-0" />
+              <Globe size={16} weight="regular" className="text-white shrink-0" />
               <span className="uppercase text-xs font-bold tracking-wide text-white">
                 {currentLang}
               </span>
-            </button>
+            </motion.button>
 
             {/* Theme Switcher Button */}
-            <button
+            <motion.button
               type="button"
               onClick={toggleTheme}
               aria-label="Theme Switcher"
-              className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shrink-0 shadow-xs transition-transform duration-150 ease-out active:scale-[0.95] cursor-pointer"
+              className="rounded-full bg-black text-white flex items-center justify-center shrink-0 shadow-xs transition-transform duration-150 ease-out active:scale-[0.95] cursor-pointer"
+              animate={{
+                width: isScrolled ? "28px" : "32px",
+                height: isScrolled ? "28px" : "32px",
+              }}
+              transition={{ duration: 0.3 }}
             >
               {isDark ? (
-                <Sun size={18} weight="regular" className="text-amber-400" />
+                <Sun size={16} weight="regular" className="text-amber-400" />
               ) : (
-                <Moon size={18} weight="regular" className="text-white" />
+                <Moon size={16} weight="regular" className="text-white" />
               )}
-            </button>
+            </motion.button>
           </div>
-        </nav>
-      </header>
+        </motion.nav>
+      </motion.header>
 
       {/* Hero Central Content - Vertically centered in Hero section */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center my-auto pt-24 pb-12 space-y-5 sm:space-y-6">
