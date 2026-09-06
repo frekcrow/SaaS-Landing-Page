@@ -16,14 +16,16 @@ export const metadata: Metadata = {
   description: "High-Performance Operating System for Modern Practices",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="ar"
       dir="rtl"
-      className={`${pingBold.variable} ${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
+      // قمنا بإزالة h-full من هنا لكي لا نقيد ارتفاع الصفحة
+      className={`${pingBold.variable} ${GeistSans.variable} ${GeistMono.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      {/* قمنا بإزالة min-h-full flex flex-col لكي يعمل الـ Sticky براحته */}
+      <body className="font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>

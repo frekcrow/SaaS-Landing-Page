@@ -3,19 +3,9 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import {
-  Brain,
-  Pulse,
-  Lightning,
-  ShieldCheck,
-  Waveform,
-  Sparkle,
-  SlidersHorizontal,
-  CheckCircle,
-  FileText,
-  Shield,
-  HardDrive,
-  Cpu,
-  Heartbeat,
+  Brain, Pulse, Lightning, ShieldCheck, Waveform,
+  Sparkle, SlidersHorizontal, CheckCircle, FileText,
+  Shield, HardDrive, Cpu, Heartbeat,
 } from "@phosphor-icons/react";
 
 interface FeatureItem {
@@ -33,8 +23,7 @@ export const featuresData: FeatureItem[] = [
     id: "ai-diagnostics",
     badge: "مستشعر الذكاء الاصطناعي",
     title: "التحليل التشخيصي المتقدم التنبؤي",
-    description:
-      "توليد فوري وقائم على الأدلة لتقارير SOAP وتحليلات الأعراض باستخدام نماذج طبية معالجة عصبياً وموثوقة بنسبة 99.8%.",
+    description: "توليد فوري وقائم على الأدلة لتقارير SOAP وتحليلات الأعراض باستخدام نماذج طبية معالجة عصبياً وموثوقة بنسبة 99.8%.",
     metrics: [
       { label: "دقة التنبؤ", value: "99.8%" },
       { label: "اختصار زمن الوثائق", value: "-75%" },
@@ -57,7 +46,6 @@ export const featuresData: FeatureItem[] = [
             نشط الان
           </span>
         </div>
-
         <div className="my-3 space-y-2.5">
           <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -74,7 +62,6 @@ export const featuresData: FeatureItem[] = [
             <div className="text-xs font-mono font-bold text-blue-400">مكتمل</div>
           </div>
         </div>
-
         <div className="p-3 rounded-xl bg-blue-950/60 border border-blue-500/20 flex items-center justify-between text-xs text-slate-300">
           <span className="flex items-center gap-1.5 font-mono text-[11px]">
             <Sparkle size={14} className="text-blue-400" /> اقتراح العلاج المؤتمت
@@ -88,8 +75,7 @@ export const featuresData: FeatureItem[] = [
     id: "telemetry-hub",
     badge: "مراقبة حية مستمرة",
     title: "منصة القياسات الحيوية والاتصال المباشر",
-    description:
-      "متابعة لحظية وتنبيهات طوارئ ذكية لكل العلامات الحيوية للمرضى، متصلة مباشرة بسجل المريض الإلكتروني.",
+    description: "متابعة لحظية وتنبيهات طوارئ ذكية لكل العلامات الحيوية للمرضى، متصلة مباشرة بسجل المريض الإلكتروني.",
     metrics: [
       { label: "معدل المزامنة", value: "<10ms" },
       { label: "التنبيهات المباشرة", value: "24/7" },
@@ -111,7 +97,6 @@ export const featuresData: FeatureItem[] = [
             99.99% Uptime
           </span>
         </div>
-
         <div className="my-3 grid grid-cols-2 gap-3">
           <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
             <div className="text-[10px] text-slate-500 font-mono">نبض القلب (BPM)</div>
@@ -124,7 +109,6 @@ export const featuresData: FeatureItem[] = [
             <div className="text-[10px] text-emerald-600 font-bold mt-1">مستقر جداً</div>
           </div>
         </div>
-
         <div className="p-3 rounded-xl bg-slate-900 text-white flex items-center justify-between text-xs">
           <span className="font-mono text-slate-300">نظام الإنذار الأوتوماتيكي</span>
           <span className="px-2 py-0.5 rounded bg-emerald-500 text-white font-mono text-[10px]">مُفعل</span>
@@ -136,8 +120,7 @@ export const featuresData: FeatureItem[] = [
     id: "workflow-automation",
     badge: "أتمتة الممارسة الطبية",
     title: "مُنسق سير العمليات الإدارية والمالية",
-    description:
-      "إعادة أتمتة المواعيد، الفواتير، والمطالبات التأمينية بسلاسة متكاملة للحد من الهدر الزمني والإداري.",
+    description: "إعادة أتمتة المواعيد، الفواتير، والمطالبات التأمينية بسلاسة متكاملة للحد من الهدر الزمني والإداري.",
     metrics: [
       { label: "تسريع المطالبات", value: "3x" },
       { label: "خفض التكاليف", value: "40%" },
@@ -157,7 +140,6 @@ export const featuresData: FeatureItem[] = [
           </div>
           <SlidersHorizontal size={20} className="text-slate-400" />
         </div>
-
         <div className="my-3 space-y-2">
           {[
             { step: "مزامنة موعد المريض", status: "مكتمل", icon: CheckCircle },
@@ -175,7 +157,6 @@ export const featuresData: FeatureItem[] = [
             </div>
           ))}
         </div>
-
         <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
           <span>معدل الأتمتة الإجمالي</span>
           <span className="font-mono text-white font-bold">94.2%</span>
@@ -187,8 +168,7 @@ export const featuresData: FeatureItem[] = [
     id: "security-compliance",
     badge: "حماية وامتثال فائق",
     title: "خزنة البيانات والتشفير العسكري",
-    description:
-      "التزام كامل بمعايير HIPAA وتشفير AES-256 مع سجل تدقيق غير قابل للتعديل لضمان أعلى معايير الخصوصية.",
+    description: "التزام كامل بمعايير HIPAA وتشفير AES-256 مع سجل تدقيق غير قابل للتعديل لضمان أعلى معايير الخصوصية.",
     metrics: [
       { label: "التشفير", value: "AES-256" },
       { label: "معايير الامتثال", value: "100%" },
@@ -208,7 +188,6 @@ export const featuresData: FeatureItem[] = [
           </div>
           <Shield size={22} className="text-blue-600" />
         </div>
-
         <div className="my-3 space-y-2.5">
           <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -219,7 +198,6 @@ export const featuresData: FeatureItem[] = [
               AES-256 Bit
             </span>
           </div>
-
           <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FileText size={18} className="text-slate-700" />
@@ -230,7 +208,6 @@ export const featuresData: FeatureItem[] = [
             </span>
           </div>
         </div>
-
         <div className="p-3 rounded-xl bg-slate-900 text-white flex items-center justify-between text-xs">
           <span className="font-mono text-slate-300">حالة خوادم الامتثال</span>
           <span className="text-emerald-400 font-bold font-mono">محمية 100%</span>
@@ -255,8 +232,6 @@ function AnimatedLeftGraphic({ item, index, progress }: AnimatedLeftGraphicProps
   ];
 
   const currentRange = ranges[index];
-
-  // Windmill motion for Left Circle (enters sliding UP along rotational curve from bottom)
   const y = useTransform(progress, currentRange, [240, 0, 0, -240]);
   const rotate = useTransform(progress, currentRange, [30, 0, 0, -30]);
   const x = useTransform(progress, currentRange, [-40, 0, 0, -40]);
@@ -268,10 +243,7 @@ function AnimatedLeftGraphic({ item, index, progress }: AnimatedLeftGraphicProps
   const scale = useTransform(progress, currentRange, [0.85, 1, 1, 0.85]);
 
   return (
-    <motion.div
-      style={{ y, rotate, x, opacity, scale }}
-      className="absolute inset-0 flex items-center justify-center p-2"
-    >
+    <motion.div style={{ y, rotate, x, opacity, scale }} className="absolute inset-0 flex items-center justify-center p-2">
       {item.renderGraphic()}
     </motion.div>
   );
@@ -292,8 +264,6 @@ function AnimatedRightText({ item, index, progress }: AnimatedRightTextProps) {
   ];
 
   const currentRange = ranges[index];
-
-  // Opposing Windmill motion for Right Circle (enters sliding DOWN along opposing rotational curve from top)
   const y = useTransform(progress, currentRange, [-240, 0, 0, 240]);
   const rotate = useTransform(progress, currentRange, [-30, 0, 0, 30]);
   const x = useTransform(progress, currentRange, [40, 0, 0, 40]);
@@ -305,10 +275,7 @@ function AnimatedRightText({ item, index, progress }: AnimatedRightTextProps) {
   const scale = useTransform(progress, currentRange, [0.85, 1, 1, 0.85]);
 
   return (
-    <motion.div
-      style={{ y, rotate, x, opacity, scale }}
-      className="absolute inset-0 flex flex-col justify-center px-4 text-right"
-    >
+    <motion.div style={{ y, rotate, x, opacity, scale }} className="absolute inset-0 flex flex-col justify-center px-4 text-right">
       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold w-fit mb-4">
         <span>{item.badge}</span>
       </div>
@@ -345,46 +312,33 @@ export function Features() {
   });
 
   return (
-    <section
-      id="features"
-      ref={containerRef}
-      className="relative w-full h-[400vh] bg-[#FAFAFC] border-b border-slate-200/80"
-    >
-      {/* Sticky top-0 h-screen viewport container */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center w-full select-none">
+    <section id="features" ref={containerRef} className="relative w-full h-[300vh] bg-[#FAFAFC] border-b border-slate-200/80">
+      
+      {/* حاوية التمرير الملتصقة */}
+      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center select-none">
 
-        {/* Left circle: positioned extremely to the left, showing right curve ')' near center */}
+        {/* الدائرة اليسرى (تم استخدام vh لضمان شكلها الدائري ومحاذاتها لمنتصف الشاشة) */}
         <div
           id="left-circle"
-          className="absolute top-1/2 -translate-y-1/2 -left-[52vw] w-[100vw] h-[100vw] rounded-full border-4 border-black bg-transparent pointer-events-none overflow-hidden"
+          className="absolute top-1/2 -translate-y-1/2 right-[50%] mr-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
         >
-          {/* Graphics content container strictly confined inside right area of left circle */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-[4vw] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
+          {/* محتوى الدائرة اليسرى (الرسومات) */}
+          <div className="absolute top-1/2 -translate-y-1/2 right-[10vh] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
             {featuresData.map((item, index) => (
-              <AnimatedLeftGraphic
-                key={item.id}
-                item={item}
-                index={index}
-                progress={smoothProgress}
-              />
+              <AnimatedLeftGraphic key={item.id} item={item} index={index} progress={smoothProgress} />
             ))}
           </div>
         </div>
 
-        {/* Right circle: positioned extremely to the right, showing left curve '(' near center */}
+        {/* الدائرة اليمنى */}
         <div
           id="Right-circle"
-          className="absolute top-1/2 -translate-y-1/2 -right-[52vw] w-[100vw] h-[100vw] rounded-full border-4 border-black bg-transparent pointer-events-none overflow-hidden"
+          className="absolute top-1/2 -translate-y-1/2 left-[50%] ml-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
         >
-          {/* Text content container strictly confined inside left area of right circle */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-[4vw] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
+          {/* محتوى الدائرة اليمنى (النصوص) */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-[10vh] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
             {featuresData.map((item, index) => (
-              <AnimatedRightText
-                key={item.id}
-                item={item}
-                index={index}
-                progress={smoothProgress}
-              />
+              <AnimatedRightText key={item.id} item={item} index={index} progress={smoothProgress} />
             ))}
           </div>
         </div>
