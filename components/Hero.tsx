@@ -234,7 +234,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.2]"
         >
-          نظم ادارتك الطبية بلمح البصر
+          نظم ادارتك الطبية بلمح البصر من سجلات المرضى الى الفوترة 
         </motion.h1>
 
         <motion.p
