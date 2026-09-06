@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, MotionValue, useReducedMotion } from "framer-motion";
 import {
   Brain, Pulse, Lightning, ShieldCheck, Waveform,
   Sparkle, SlidersHorizontal, CheckCircle, FileText,
@@ -98,12 +98,12 @@ export const featuresData: FeatureItem[] = [
           </span>
         </div>
         <div className="my-3 grid grid-cols-2 gap-3">
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.97] cursor-pointer">
             <div className="text-[10px] text-slate-500 font-mono">نبض القلب (BPM)</div>
             <div className="text-2xl font-mono font-extrabold text-slate-900 mt-1">72</div>
             <div className="text-[10px] text-emerald-600 font-bold mt-1">طبيعي وحيوي</div>
           </div>
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.97] cursor-pointer">
             <div className="text-[10px] text-slate-500 font-mono">تشبع الأكسجين (SpO2)</div>
             <div className="text-2xl font-mono font-extrabold text-slate-900 mt-1">98%</div>
             <div className="text-[10px] text-emerald-600 font-bold mt-1">مستقر جداً</div>
@@ -140,13 +140,26 @@ export const featuresData: FeatureItem[] = [
           </div>
           <SlidersHorizontal size={20} className="text-slate-400" />
         </div>
-        <div className="my-3 space-y-2">
+        <motion.div 
+          className="my-3 space-y-2"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ staggerChildren: 0.04 }}
+        >
           {[
             { step: "مزامنة موعد المريض", status: "مكتمل", icon: CheckCircle },
             { step: "التحقق من التغطية التأمينية", status: "معتمد", icon: CheckCircle },
             { step: "إرسال المطالبة المباشرة", status: "جاري المعالجة", icon: Cpu },
           ].map((item, idx) => (
-            <div key={idx} className="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-between text-xs">
+            <motion.div 
+              key={idx} 
+              variants={{
+                hidden: { opacity: 0, scale: 0.95 },
+                visible: { opacity: 1, scale: 1, transition: { ease: [0.23, 1, 0.32, 1], duration: 0.4 } }
+              }}
+              className="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-between text-xs transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+            >
               <div className="flex items-center gap-2">
                 <item.icon size={16} className="text-cyan-400" />
                 <span className="text-slate-200">{item.step}</span>
@@ -154,9 +167,9 @@ export const featuresData: FeatureItem[] = [
               <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
                 {item.status}
               </span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
           <span>معدل الأتمتة الإجمالي</span>
           <span className="font-mono text-white font-bold">94.2%</span>
@@ -224,20 +237,20 @@ interface AnimatedLeftGraphicProps {
 }
 
 function AnimatedLeftGraphic({ item, index, progress }: AnimatedLeftGraphicProps) {
-  // التوزيع الزمني الدقيق لكل ميزة أثناء التمرير
+  const shouldReduceMotion = useReducedMotion();
+  
   const inputRanges = [
-    [0, 0.15, 0.25],          // الميزة الأولى (تظهر فوراً)
-    [0.15, 0.25, 0.45, 0.55], // الميزة الثانية
-    [0.45, 0.55, 0.75, 0.85], // الميزة الثالثة
-    [0.75, 0.85, 1.0],        // الميزة الرابعة
+    [0, 0.10, 0.20],
+    [0.20, 0.30, 0.40, 0.50],
+    [0.50, 0.60, 0.70, 0.80],
+    [0.80, 0.90, 1.0],
   ];
 
-  // المخططات (اليسار) تنزلق من الأسفل (150) للمنتصف (0) ثم تختفي للأعلى (-150)
   const yRanges = [
-    [0, 0, -150],
-    [150, 0, 0, -150],
-    [150, 0, 0, -150],
-    [150, 0, 0],
+    [0, 0, -200],
+    [200, 0, 0, -200],
+    [200, 0, 0, -200],
+    [200, 0, 0],
   ];
 
   const opacityRanges = [
@@ -247,12 +260,20 @@ function AnimatedLeftGraphic({ item, index, progress }: AnimatedLeftGraphicProps
     [0, 1, 1],
   ];
 
-  const y = useTransform(progress, inputRanges[index], yRanges[index]);
+  const activeYRanges = shouldReduceMotion ? yRanges[index].map(() => 0) : yRanges[index];
+  const y = useTransform(progress, inputRanges[index], activeYRanges);
   const opacity = useTransform(progress, inputRanges[index], opacityRanges[index]);
 
   return (
     <motion.div style={{ y, opacity }} className="absolute inset-0 flex items-center justify-center p-2">
-      {item.renderGraphic()}
+      <motion.div
+        whileInView={{ y: [0, -8, 0] }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+        className="w-full h-full flex items-center justify-center"
+      >
+        {item.renderGraphic()}
+      </motion.div>
     </motion.div>
   );
 }
@@ -264,19 +285,20 @@ interface AnimatedRightTextProps {
 }
 
 function AnimatedRightText({ item, index, progress }: AnimatedRightTextProps) {
+  const shouldReduceMotion = useReducedMotion();
+  
   const inputRanges = [
-    [0, 0.15, 0.25],
-    [0.15, 0.25, 0.45, 0.55],
-    [0.45, 0.55, 0.75, 0.85],
-    [0.75, 0.85, 1.0],
+    [0, 0.10, 0.20],
+    [0.20, 0.30, 0.40, 0.50],
+    [0.50, 0.60, 0.70, 0.80],
+    [0.80, 0.90, 1.0],
   ];
 
-  // الشروحات (اليمين) تنزلق من الأعلى (-150) للمنتصف (0) ثم تختفي للأسفل (150)
   const yRanges = [
-    [0, 0, 150],
-    [-150, 0, 0, 150],
-    [-150, 0, 0, 150],
-    [-150, 0, 0],
+    [0, 0, 100],
+    [-100, 0, 0, 100],
+    [-100, 0, 0, 100],
+    [-100, 0, 0],
   ];
 
   const opacityRanges = [
@@ -286,28 +308,36 @@ function AnimatedRightText({ item, index, progress }: AnimatedRightTextProps) {
     [0, 1, 1],
   ];
 
-  const y = useTransform(progress, inputRanges[index], yRanges[index]);
-  const opacity = useTransform(progress, inputRanges[index], opacityRanges[index]);
+  const activeYRanges = shouldReduceMotion ? yRanges[index].map(() => 0) : yRanges[index];
+  
+  // Single Y transform to avoid internal text collisions
+  const y = useTransform(progress, inputRanges[index], activeYRanges);
+  
+  // Staggered Opacity for a cascading fade-in effect
+  const opacityBadge = useTransform(progress, inputRanges[index], opacityRanges[index]);
+  const opacityTitle = useTransform(progress, inputRanges[index].map(v => Math.min(v + 0.01, 1.0)), opacityRanges[index]);
+  const opacityDesc = useTransform(progress, inputRanges[index].map(v => Math.min(v + 0.02, 1.0)), opacityRanges[index]);
+  const opacityMetrics = useTransform(progress, inputRanges[index].map(v => Math.min(v + 0.03, 1.0)), opacityRanges[index]);
 
   return (
-    <motion.div style={{ y, opacity }} className="absolute inset-0 flex flex-col justify-center px-4 text-right">
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold w-fit mb-4">
+    <motion.div style={{ y }} className="absolute inset-0 flex flex-col justify-center px-4 text-right">
+      <motion.div style={{ opacity: opacityBadge }} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold w-fit mb-4">
         <span>{item.badge}</span>
-      </div>
-      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3">
+      </motion.div>
+      <motion.h3 style={{ opacity: opacityTitle }} className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3">
         {item.title}
-      </h3>
-      <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 font-normal">
+      </motion.h3>
+      <motion.p style={{ opacity: opacityDesc }} className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 font-normal">
         {item.description}
-      </p>
-      <div className="grid grid-cols-2 gap-4 border-t border-slate-200/80 pt-4">
+      </motion.p>
+      <motion.div style={{ opacity: opacityMetrics }} className="grid grid-cols-2 gap-4 border-t border-slate-200/80 pt-4">
         {item.metrics.map((m, idx) => (
           <div key={idx}>
             <div className="text-xs font-mono text-slate-500">{m.label}</div>
-            <div className="text-xl font-mono font-extrabold text-slate-900 mt-0.5">{m.value}</div>
+            <div className="text-xl font-mono font-extrabold text-slate-900 mt-0.5 tabular-nums">{m.value}</div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -320,17 +350,18 @@ export function Features() {
     offset: ["start start", "end end"],
   });
 
-  // ضبطت إعدادات الزنبرك لتكون أسرع وأنعم بكثير
+  // تخفيف قليل في الكتلة (mass) لكي يكون الزنبرك ثقيلاً ولكن يستجيب فوراً للمس
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100, 
-    damping: 30, 
+    stiffness: 30, 
+    damping: 30,
+    mass: 1.5,
     restDelta: 0.001,
   });
 
   return (
-    <section id="features" ref={containerRef} className="relative w-full h-[300vh] bg-[#FAFAFC] border-b border-slate-200/80">
+    // قمنا بزيادة طول الصفحة إلى 500vh لإعطاء وقت أطول جداً للقراءة والتمرير بين الميزات
+    <section id="features" ref={containerRef} className="relative w-full h-[500vh] bg-[#FAFAFC] border-b border-slate-200/80">
       
-      {/* حاوية التمرير الملتصقة */}
       <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center select-none">
 
         {/* الدائرة اليسرى */}
@@ -338,7 +369,6 @@ export function Features() {
           id="left-circle"
           className="absolute top-1/2 -translate-y-1/2 right-[50%] mr-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
         >
-          {/* محتوى الدائرة اليسرى (الرسومات) */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[10vh] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
             {featuresData.map((item, index) => (
               <AnimatedLeftGraphic key={item.id} item={item} index={index} progress={smoothProgress} />
@@ -351,7 +381,6 @@ export function Features() {
           id="Right-circle"
           className="absolute top-1/2 -translate-y-1/2 left-[50%] ml-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
         >
-          {/* محتوى الدائرة اليمنى (النصوص) */}
           <div className="absolute top-1/2 -translate-y-1/2 left-[10vh] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
             {featuresData.map((item, index) => (
               <AnimatedRightText key={item.id} item={item} index={index} progress={smoothProgress} />
