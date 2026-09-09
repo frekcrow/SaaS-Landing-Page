@@ -1,190 +1,147 @@
 "use client";
 
+import Image from "next/image";
 import {
   Pulse,
   ShieldCheck,
-  TwitterLogo,
-  LinkedinLogo,
-  GithubLogo,
+  InstagramLogo,
+  TelegramLogo,
+  WhatsappLogo,
+  Phone,
+  EnvelopeSimple,
+  MapPin,
+  Headset,
 } from "@phosphor-icons/react";
 
 export function Footer() {
   return (
     <footer className="w-full bg-white text-slate-600 border-t border-slate-200/80 relative dir-rtl" dir="rtl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
-        {/* Operational Status & Telemetry Header Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/90 mb-12 shadow-2xs font-mono text-xs">
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-            </span>
-            <span className="text-slate-800 font-bold">
-              جميع أنظمة ClinicOS تعمل بكفاءة
-            </span>
-            <span className="text-slate-400">•</span>
-            <span className="text-slate-600">جاهزية تشغيل تاريخية بنسبة 99.99%</span>
-          </div>
-
-          <div className="flex items-center gap-4 text-slate-700 font-semibold">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck size={16} weight="bold" className="text-slate-900" />
-              <span>معتمد وفق معايير HIPAA و SOC 2 Type II</span>
-            </span>
-          </div>
-        </div>
-
         {/* Navigation Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200/80 text-right">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10 pb-12 border-b border-slate-200/80 text-right">
           {/* Brand & Technical Architecture Specs (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white">
-                <Pulse size={18} weight="bold" className="text-blue-400" />
-              </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900">
-                Clinic<span className="text-blue-600 font-mono text-base">OS</span>
-              </span>
+              <Image
+                src="/images/logo-text.png"
+                alt="Brand Logo"
+                width={140}
+                height={45}
+                className="h-8 w-auto object-contain"
+              />
             </div>
 
             <p className="text-xs text-slate-500 leading-relaxed max-w-sm font-normal">
               نظام التشغيل السريري للممارسات الطبية الحديثة، وشبكات الأنظمة الصحية، والعيادات التخصصية حول العالم.
             </p>
+          </div>
 
-            <div className="pt-1 flex items-center gap-2 text-[10px] font-mono text-slate-500 font-medium">
-              <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
-                HL7 FHIR v4
-              </span>
-              <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
-                AES-256-GCM
-              </span>
-              <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
-                جاهز لاتفاقية BAA
-              </span>
+          {/* Column 1: Company */}
+          <div className="space-y-3 text-xs">
+            <ul className="space-y-2 text-slate-600 font-medium">
+              <li><a href="#" className="hover:text-slate-900 transition-colors">من نحن</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">الوظائف</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">فريقنا</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">الأبحاث</a></li>
+            </ul>
+          </div>
+
+          {/* Column 2: Legal */}
+          <div className="space-y-3 text-xs">
+            <ul className="space-y-2 text-slate-600 font-medium">
+              <li><a href="#" className="hover:text-slate-900 transition-colors">سياسة الخصوصية</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">شروط الخدمة</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">الامتثال لـ HIPAA</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">الأمان</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Features */}
+          <div className="space-y-3 text-xs">
+            <ul className="space-y-2 text-slate-600 font-medium">
+              <li><a href="#" className="hover:text-slate-900 transition-colors">EHR مدعوم بالذكاء الاصطناعي</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">تحليلات المرضى</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">دعم 24/7</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">متعدد الممارسات</a></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Resources */}
+          <div className="space-y-3 text-xs">
+            <ul className="space-y-2 text-slate-600 font-medium">
+              <li><a href="#" className="hover:text-slate-900 transition-colors">تحميل التطبيقات</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">الوثائق</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">الوصول إلى API</a></li>
+              <li><a href="#" className="hover:text-slate-900 transition-colors">دعم الاتصال</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Contact Info Split */}
+        <div className="py-10 border-b border-slate-200/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 text-right">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Headset size={16} weight="bold" className="text-blue-600" />
+              <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">معلومات التواصل</h4>
+            </div>
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 text-sm text-slate-600">
+              <div className="flex flex-col gap-2">
+                <div dir="ltr" className="flex items-center gap-2 text-right">
+                  <Phone size={16} className="text-slate-400" />
+                  <span className="font-mono">+964 781 781 6288</span>
+                </div>
+                <div dir="ltr" className="flex items-center gap-2 text-right">
+                  <Phone size={16} className="text-slate-400" />
+                  <span className="font-mono">+964 781 515 8374</span>
+                </div>
+              </div>
+              <div className="flex h-full pt-1">
+                <a href="mailto:atlascompany@gmail.com" className="hover:text-slate-900 transition-colors font-mono flex items-center gap-2">
+                  <EnvelopeSimple size={16} className="text-slate-400" />
+                  <span>atlascompany@gmail.com</span>
+                </a>
+              </div>
             </div>
           </div>
-
-          {/* Column 1: Platform */}
-          <div className="space-y-3 text-xs">
-            <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">
-              المنصة السريرية
-            </h4>
-            <ul className="space-y-2 text-slate-600 font-medium">
-              <li>
-                <a href="#features" className="hover:text-slate-900 transition-colors">
-                  الكاتب المحيطي بالذكاء الاصطناعي
-                </a>
-              </li>
-              <li>
-                <a href="#features" className="hover:text-slate-900 transition-colors">
-                  السجل الطبي والخزنة المشفرة
-                </a>
-              </li>
-              <li>
-                <a href="#features" className="hover:text-slate-900 transition-colors">
-                  طابور الفرز وتدفق المرضى
-                </a>
-              </li>
-              <li>
-                <a href="#features" className="hover:text-slate-900 transition-colors">
-                  تسوية ودورة الإيرادات
-                </a>
-              </li>
-              <li>
-                <a href="#features" className="hover:text-slate-900 transition-colors">
-                  تكامل مؤشرات الطب الاتصالي
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Trust & Compliance */}
-          <div className="space-y-3 text-xs">
-            <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">
-              الأمان والامتثال
-            </h4>
-            <ul className="space-y-2 text-slate-600 font-medium">
-              <li>
-                <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  دليل أمان HIPAA
-                </a>
-              </li>
-              <li>
-                <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  توقيع اتفاقية BAA إلكترونياً
-                </a>
-              </li>
-              <li>
-                <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  تقرير SOC 2 Type II
-                </a>
-              </li>
-              <li>
-                <a href="#compliance" className="hover:text-slate-900 transition-colors">
-                  إقامة البيانات والنسخ الاحتياطي
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Resources */}
-          <div className="space-y-3 text-xs">
-            <h4 className="font-mono text-[11px] uppercase text-slate-900 font-bold tracking-wider">
-              موارد الممارسة
-            </h4>
-            <ul className="space-y-2 text-slate-600 font-medium">
-              <li>
-                <a href="#" className="hover:text-slate-900 transition-colors">
-                  توثيق API و Webhooks
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-slate-900 transition-colors">
-                  حاسبة عائد الاستثمار للممارسة
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-slate-900 transition-colors">
-                  دليل نقل بيانات السجل الطبي
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-slate-900 transition-colors">
-                  دعم سريري على مدار 24/7
-                </a>
-              </li>
-            </ul>
+          
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-16 text-sm text-slate-600">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 p-1.5 bg-slate-100 rounded-lg text-slate-500">
+                <MapPin size={16} weight="fill" />
+              </div>
+              <div>
+                <strong className="block text-slate-800 text-xs mb-1">مكتب العراق</strong>
+                <span>محافظة الانبار العراق</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 p-1.5 bg-slate-100 rounded-lg text-slate-500">
+                <MapPin size={16} weight="fill" />
+              </div>
+              <div>
+                <strong className="block text-slate-800 text-xs mb-1">مكتب الامارات المتحدة</strong>
+                <span>Dubai</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            <span>© 2026 ClinicOS Inc. صُمم من أجل الدقة السريرية.</span>
+            <span>© 2026 Atlas للحلول الالكترونية</span>
           </div>
 
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-slate-900 transition-colors">
-              سياسة الخصوصية
+          <div className="flex items-center gap-5 text-slate-500 mr-2">
+            <a href="#" aria-label="Instagram" className="hover:text-[#E1306C] transition-colors">
+              <InstagramLogo size={24} weight="duotone" />
             </a>
-            <a href="#" className="hover:text-slate-900 transition-colors">
-              شروط الخدمة
+            <a href="#" aria-label="Telegram" className="hover:text-[#229ED9] transition-colors">
+              <TelegramLogo size={24} weight="duotone" />
             </a>
-            <a href="#" className="hover:text-slate-900 transition-colors">
-              اتفاقية BAA
+            <a href="#" aria-label="WhatsApp" className="hover:text-[#25D366] transition-colors">
+              <WhatsappLogo size={24} weight="duotone" />
             </a>
-
-            <div className="flex items-center gap-3 text-slate-600 mr-2">
-              <a href="#" aria-label="Twitter" className="hover:text-slate-900 transition-colors">
-                <TwitterLogo size={16} weight="fill" />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="hover:text-slate-900 transition-colors">
-                <LinkedinLogo size={16} weight="fill" />
-              </a>
-              <a href="#" aria-label="GitHub" className="hover:text-slate-900 transition-colors">
-                <GithubLogo size={16} weight="fill" />
-              </a>
-            </div>
           </div>
         </div>
       </div>

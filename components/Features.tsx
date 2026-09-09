@@ -1,11 +1,19 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, MotionValue, useReducedMotion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import {
-  Brain, Pulse, Lightning, ShieldCheck, Waveform,
-  Sparkle, SlidersHorizontal, CheckCircle, FileText,
-  Shield, HardDrive, Cpu, Heartbeat,
+  CalendarCheck,
+  UsersThree,
+  FileText,
+  ShieldCheck,
+  Printer,
+  Infinity as InfinityIcon,
+  TelegramLogo,
+  Image as ImageIcon,
+  Bell,
+  Checks,
+  Clock
 } from "@phosphor-icons/react";
 
 interface FeatureItem {
@@ -20,329 +28,135 @@ interface FeatureItem {
 
 export const featuresData: FeatureItem[] = [
   {
-    id: "ai-diagnostics",
-    badge: "مستشعر الذكاء الاصطناعي",
-    title: "التحليل التشخيصي المتقدم التنبؤي",
-    description: "توليد فوري وقائم على الأدلة لتقارير SOAP وتحليلات الأعراض باستخدام نماذج طبية معالجة عصبياً وموثوقة بنسبة 99.8%.",
+    id: "scheduling",
+    badge: "الميزة الأولى",
+    title: "جدولة كاملة للحجوزات وسجلات سحابية",
+    description: "تضمن عدم تضارب مواعيد المرضى مع تذكيرات آلية، ولوحة تحكم تعرض حجوزات كل ساعة، مع سجل مفصل لكل زائر.",
     metrics: [
-      { label: "دقة التنبؤ", value: "99.8%" },
-      { label: "اختصار زمن الوثائق", value: "-75%" },
+      { label: "تضارب المواعيد", value: "0%" },
+      { label: "التذكيرات الآلية", value: "متوفر" },
     ],
     accentColor: "from-blue-500 to-indigo-600",
     renderGraphic: () => (
-      <div className="w-full max-w-md h-[340px] p-6 flex flex-col justify-between bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 rounded-2xl text-white shadow-xl border border-slate-800 select-none">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
-              <Brain size={24} weight="duotone" />
-            </div>
-            <div>
-              <div className="text-xs font-mono text-blue-400">محلل Clinical-AI v4.2</div>
-              <div className="text-sm font-bold text-slate-100">تحليل الاستشارات الطبية الحية</div>
-            </div>
-          </div>
-          <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            نشط الان
-          </span>
-        </div>
-        <div className="my-3 space-y-2.5">
-          <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Heartbeat size={18} className="text-blue-400" />
-              <span className="text-xs text-slate-300">مؤشر المخاطر القلبية</span>
-            </div>
-            <div className="text-xs font-mono font-bold text-emerald-400">منخفض (12%)</div>
-          </div>
-          <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Waveform size={18} className="text-indigo-400" />
-              <span className="text-xs text-slate-300">توليد تقرير SOAP تلقائي</span>
-            </div>
-            <div className="text-xs font-mono font-bold text-blue-400">مكتمل</div>
-          </div>
-        </div>
-        <div className="p-3 rounded-xl bg-blue-950/60 border border-blue-500/20 flex items-center justify-between text-xs text-slate-300">
-          <span className="flex items-center gap-1.5 font-mono text-[11px]">
-            <Sparkle size={14} className="text-blue-400" /> اقتراح العلاج المؤتمت
-          </span>
-          <span className="font-mono text-blue-300 font-bold">جاهز للمراجعة</span>
-        </div>
-      </div>
+      <CalendarCheck size={140} className="text-blue-500/40" weight="duotone" />
     ),
   },
   {
-    id: "telemetry-hub",
-    badge: "مراقبة حية مستمرة",
-    title: "منصة القياسات الحيوية والاتصال المباشر",
-    description: "متابعة لحظية وتنبيهات طوارئ ذكية لكل العلامات الحيوية للمرضى، متصلة مباشرة بسجل المريض الإلكتروني.",
+    id: "dual-system",
+    badge: "الميزة الثانية",
+    title: "نظام ثنائي مدمج للطبيب والسكرتير",
+    description: "واجهة للسكرتير لإدارة العيادة والبحث وطباعة السجلات بثوانٍ، وواجهة قيادة خاصة للطبيب للفوترة والحسابات ومقارنة الملفات الطبية.",
     metrics: [
-      { label: "معدل المزامنة", value: "<10ms" },
-      { label: "التنبيهات المباشرة", value: "24/7" },
+      { label: "سرعة البحث", value: "ثوانٍ معدودة" },
+      { label: "واجهات مخصصة", value: "مستقلة" },
     ],
     accentColor: "from-emerald-500 to-teal-600",
     renderGraphic: () => (
-      <div className="w-full max-w-md h-[340px] p-6 flex flex-col justify-between bg-white rounded-2xl text-slate-900 shadow-xl border border-slate-200 select-none">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200">
-              <Pulse size={24} weight="bold" />
-            </div>
-            <div>
-              <div className="text-xs font-mono text-slate-400">Telemetry Stream</div>
-              <div className="text-sm font-bold text-slate-900">غرفة العناية وقياس الأجهزة</div>
-            </div>
-          </div>
-          <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-emerald-100 text-emerald-700 font-bold">
-            99.99% Uptime
-          </span>
-        </div>
-        <div className="my-3 grid grid-cols-2 gap-3">
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.97] cursor-pointer">
-            <div className="text-[10px] text-slate-500 font-mono">نبض القلب (BPM)</div>
-            <div className="text-2xl font-mono font-extrabold text-slate-900 mt-1">72</div>
-            <div className="text-[10px] text-emerald-600 font-bold mt-1">طبيعي وحيوي</div>
-          </div>
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.97] cursor-pointer">
-            <div className="text-[10px] text-slate-500 font-mono">تشبع الأكسجين (SpO2)</div>
-            <div className="text-2xl font-mono font-extrabold text-slate-900 mt-1">98%</div>
-            <div className="text-[10px] text-emerald-600 font-bold mt-1">مستقر جداً</div>
-          </div>
-        </div>
-        <div className="p-3 rounded-xl bg-slate-900 text-white flex items-center justify-between text-xs">
-          <span className="font-mono text-slate-300">نظام الإنذار الأوتوماتيكي</span>
-          <span className="px-2 py-0.5 rounded bg-emerald-500 text-white font-mono text-[10px]">مُفعل</span>
-        </div>
-      </div>
+      <UsersThree size={140} className="text-emerald-500/40" weight="duotone" />
     ),
   },
   {
-    id: "workflow-automation",
-    badge: "أتمتة الممارسة الطبية",
-    title: "مُنسق سير العمليات الإدارية والمالية",
-    description: "إعادة أتمتة المواعيد، الفواتير، والمطالبات التأمينية بسلاسة متكاملة للحد من الهدر الزمني والإداري.",
+    id: "e-prescriptions",
+    badge: "الميزة الثالثة",
+    title: "وصفات طبية إلكترونية سريعة",
+    description: "كتابة الوصفات إلكترونياً بقوالب جاهزة، مع طباعة سريعة بأحجام A5, A4, A3 بضغطة زر وتصاميم مفصلة ومقترنة بطابعتك.",
     metrics: [
-      { label: "تسريع المطالبات", value: "3x" },
-      { label: "خفض التكاليف", value: "40%" },
+      { label: "أحجام الطباعة", value: "A3, A4, A5" },
+      { label: "سرعة الإصدار", value: "فوري" },
     ],
-    accentColor: "from-cyan-500 to-blue-600",
+    accentColor: "from-purple-500 to-fuchsia-600",
     renderGraphic: () => (
-      <div className="w-full max-w-md h-[340px] p-6 flex flex-col justify-between bg-slate-900 text-white rounded-2xl shadow-xl border border-slate-800 select-none">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-              <Lightning size={24} weight="duotone" />
-            </div>
-            <div>
-              <div className="text-xs font-mono text-cyan-400">Workflow Engine</div>
-              <div className="text-sm font-bold text-slate-100">المقاصة وتسوية المطالبات</div>
-            </div>
-          </div>
-          <SlidersHorizontal size={20} className="text-slate-400" />
-        </div>
-        <motion.div 
-          className="my-3 space-y-2"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ staggerChildren: 0.04 }}
-        >
-          {[
-            { step: "مزامنة موعد المريض", status: "مكتمل", icon: CheckCircle },
-            { step: "التحقق من التغطية التأمينية", status: "معتمد", icon: CheckCircle },
-            { step: "إرسال المطالبة المباشرة", status: "جاري المعالجة", icon: Cpu },
-          ].map((item, idx) => (
-            <motion.div 
-              key={idx} 
-              variants={{
-                hidden: { opacity: 0, scale: 0.95 },
-                visible: { opacity: 1, scale: 1, transition: { ease: [0.23, 1, 0.32, 1], duration: 0.4 } }
-              }}
-              className="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-between text-xs transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
-            >
-              <div className="flex items-center gap-2">
-                <item.icon size={16} className="text-cyan-400" />
-                <span className="text-slate-200">{item.step}</span>
-              </div>
-              <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
-                {item.status}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
-        <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-          <span>معدل الأتمتة الإجمالي</span>
-          <span className="font-mono text-white font-bold">94.2%</span>
-        </div>
-      </div>
+      <FileText size={140} className="text-purple-500/40" weight="duotone" />
     ),
   },
   {
-    id: "security-compliance",
-    badge: "حماية وامتثال فائق",
-    title: "خزنة البيانات والتشفير العسكري",
-    description: "التزام كامل بمعايير HIPAA وتشفير AES-256 مع سجل تدقيق غير قابل للتعديل لضمان أعلى معايير الخصوصية.",
+    id: "high-security",
+    badge: "الميزة الرابعة",
+    title: "نظام حماية عالي الخصوصية للممارس",
+    description: "صندوق سجلات آمن يحفظ كافة إجراءات العيادة، وتعديلات السكرتير أو الطبيب بالوقت والتاريخ لتجنب أي خلل إداري.",
     metrics: [
-      { label: "التشفير", value: "AES-256" },
-      { label: "معايير الامتثال", value: "100%" },
+      { label: "مراقبة الإجراءات", value: "100%" },
+      { label: "سجلات آمنة", value: "تلقائي" },
     ],
-    accentColor: "from-blue-600 to-slate-900",
+    accentColor: "from-slate-700 to-slate-900",
     renderGraphic: () => (
-      <div className="w-full max-w-md h-[340px] p-6 flex flex-col justify-between bg-white rounded-2xl text-slate-900 shadow-xl border border-slate-200 select-none">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 border border-blue-200">
-              <ShieldCheck size={24} weight="bold" />
-            </div>
-            <div>
-              <div className="text-xs font-mono text-slate-400">Security Core</div>
-              <div className="text-sm font-bold text-slate-900">سجل أمان العيادة وتشفير السجلات</div>
-            </div>
-          </div>
-          <Shield size={22} className="text-blue-600" />
-        </div>
-        <div className="my-3 space-y-2.5">
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <HardDrive size={18} className="text-slate-700" />
-              <span className="text-xs font-medium text-slate-800">تشفير القواعد المباشرة</span>
-            </div>
-            <span className="text-[10px] font-mono bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">
-              AES-256 Bit
-            </span>
-          </div>
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <FileText size={18} className="text-slate-700" />
-              <span className="text-xs font-medium text-slate-800">سجل تدقيق الوصول HIPAA</span>
-            </div>
-            <span className="text-[10px] font-mono bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">
-              مؤمن بالكامل
-            </span>
-          </div>
-        </div>
-        <div className="p-3 rounded-xl bg-slate-900 text-white flex items-center justify-between text-xs">
-          <span className="font-mono text-slate-300">حالة خوادم الامتثال</span>
-          <span className="text-emerald-400 font-bold font-mono">محمية 100%</span>
-        </div>
-      </div>
+      <ShieldCheck size={140} className="text-slate-500/40" weight="duotone" />
+    ),
+  },
+  {
+    id: "printable-records",
+    badge: "الميزة الخامسة",
+    title: "خيارات الطباعة والأرشفة الورقية",
+    description: "إمكانية طباعة كافة السجلات الطبية دون استثناء الموجودة داخل النظام ورقياً، لتوفير نسخ احتياطية عند الحاجة.",
+    metrics: [
+      { label: "النسخ الاحتياطي الورقي", value: "متاح" },
+      { label: "قيود الطباعة", value: "لا يوجد" },
+    ],
+    accentColor: "from-orange-500 to-red-600",
+    renderGraphic: () => (
+      <Printer size={140} className="text-orange-500/40" weight="duotone" />
+    ),
+  },
+  {
+    id: "unlimited-usage",
+    badge: "الميزة السادسة",
+    title: "استخدام شامل خالي من القيود",
+    description: "لا توجد أي حدود على استخدام النظام أو نقاط. يمكن لكافة الممارسين داخل العيادة استخدام نظام أطلس الطبي بأريحية تامة.",
+    metrics: [
+      { label: "سقف الاستخدام", value: "غير محدود" },
+      { label: "قيود النظام", value: "معدومة" },
+    ],
+    accentColor: "from-cyan-500 to-blue-500",
+    renderGraphic: () => (
+      <InfinityIcon size={140} className="text-cyan-500/40" weight="duotone" />
+    ),
+  },
+  {
+    id: "telegram-bot",
+    badge: "الميزة السابعة",
+    title: "إدارة العيادة عبر بوت تليجرام",
+    description: "اتصال مباشر مع بوت تليجرام خاص لإدخال بيانات المرضى والتحكم بالعيادة عن بُعد وخارج ساعات العمل للطبيب والسكرتير.",
+    metrics: [
+      { label: "الوصول عن بعد", value: "24/7" },
+      { label: "إدارة البيانات", value: "من أي مكان" },
+    ],
+    accentColor: "from-sky-400 to-blue-600",
+    renderGraphic: () => (
+      <TelegramLogo size={140} className="text-sky-400/40" weight="duotone" />
+    ),
+  },
+  {
+    id: "radiology-images",
+    badge: "الميزة الثامنة",
+    title: "أرشفة الأشعة والصور التشخيصية",
+    description: "إمكانية رفع صور للأشعة السابقة أو الوصفات القديمة وإرفاقها داخل ملف المريض لمراجعتها بأي وقت بسهولة.",
+    metrics: [
+      { label: "تخزين الصور", value: "متاح" },
+      { label: "الوصول للأشعة", value: "فوري" },
+    ],
+    accentColor: "from-pink-500 to-rose-600",
+    renderGraphic: () => (
+      <ImageIcon size={140} className="text-pink-500/40" weight="duotone" />
+    ),
+  },
+  {
+    id: "smart-reminders",
+    badge: "الميزة التاسعة",
+    title: "تنبيهات ذكية بالاشتراكات",
+    description: "نظام أطلس ينبهك آلياً باقتراب موعد انتهاء اشتراك العيادة الشهري أو السنوي قبل 6 أيام من تاريخ الانتهاء لضمان استمرارية الخدمة.",
+    metrics: [
+      { label: "إشعار التجديد", value: "قبل 6 أيام" },
+      { label: "المتابعة", value: "آلية" },
+    ],
+    accentColor: "from-yellow-500 to-amber-600",
+    renderGraphic: () => (
+      <Bell size={140} className="text-yellow-500/40" weight="duotone" />
     ),
   },
 ];
 
-interface AnimatedLeftGraphicProps {
-  item: FeatureItem;
-  index: number;
-  progress: MotionValue<number>;
-}
-
-function AnimatedLeftGraphic({ item, index, progress }: AnimatedLeftGraphicProps) {
-  const shouldReduceMotion = useReducedMotion();
-  
-  const inputRanges = [
-    [0, 0.10, 0.20],
-    [0.20, 0.30, 0.40, 0.50],
-    [0.50, 0.60, 0.70, 0.80],
-    [0.80, 0.90, 1.0],
-  ];
-
-  const yRanges = [
-    [0, 0, -200],
-    [200, 0, 0, -200],
-    [200, 0, 0, -200],
-    [200, 0, 0],
-  ];
-
-  const opacityRanges = [
-    [1, 1, 0],
-    [0, 1, 1, 0],
-    [0, 1, 1, 0],
-    [0, 1, 1],
-  ];
-
-  const activeYRanges = shouldReduceMotion ? yRanges[index].map(() => 0) : yRanges[index];
-  const y = useTransform(progress, inputRanges[index], activeYRanges);
-  const opacity = useTransform(progress, inputRanges[index], opacityRanges[index]);
-
-  return (
-    <motion.div style={{ y, opacity }} className="absolute inset-0 flex items-center justify-center p-2">
-      <motion.div
-        whileInView={{ y: [0, -8, 0] }}
-        viewport={{ once: false, amount: 0.1 }}
-        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        className="w-full h-full flex items-center justify-center"
-      >
-        {item.renderGraphic()}
-      </motion.div>
-    </motion.div>
-  );
-}
-
-interface AnimatedRightTextProps {
-  item: FeatureItem;
-  index: number;
-  progress: MotionValue<number>;
-}
-
-function AnimatedRightText({ item, index, progress }: AnimatedRightTextProps) {
-  const shouldReduceMotion = useReducedMotion();
-  
-  const inputRanges = [
-    [0, 0.10, 0.20],
-    [0.20, 0.30, 0.40, 0.50],
-    [0.50, 0.60, 0.70, 0.80],
-    [0.80, 0.90, 1.0],
-  ];
-
-  const yRanges = [
-    [0, 0, 100],
-    [-100, 0, 0, 100],
-    [-100, 0, 0, 100],
-    [-100, 0, 0],
-  ];
-
-  const opacityRanges = [
-    [1, 1, 0],
-    [0, 1, 1, 0],
-    [0, 1, 1, 0],
-    [0, 1, 1],
-  ];
-
-  const activeYRanges = shouldReduceMotion ? yRanges[index].map(() => 0) : yRanges[index];
-  
-  // Single Y transform to avoid internal text collisions
-  const y = useTransform(progress, inputRanges[index], activeYRanges);
-  
-  // Staggered Opacity for a cascading fade-in effect
-  const opacityBadge = useTransform(progress, inputRanges[index], opacityRanges[index]);
-  const opacityTitle = useTransform(progress, inputRanges[index].map(v => Math.min(v + 0.01, 1.0)), opacityRanges[index]);
-  const opacityDesc = useTransform(progress, inputRanges[index].map(v => Math.min(v + 0.02, 1.0)), opacityRanges[index]);
-  const opacityMetrics = useTransform(progress, inputRanges[index].map(v => Math.min(v + 0.03, 1.0)), opacityRanges[index]);
-
-  return (
-    <motion.div style={{ y }} className="absolute inset-0 flex flex-col justify-center px-4 text-right">
-      <motion.div style={{ opacity: opacityBadge }} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold w-fit mb-4">
-        <span>{item.badge}</span>
-      </motion.div>
-      <motion.h3 style={{ opacity: opacityTitle }} className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3">
-        {item.title}
-      </motion.h3>
-      <motion.p style={{ opacity: opacityDesc }} className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 font-normal">
-        {item.description}
-      </motion.p>
-      <motion.div style={{ opacity: opacityMetrics }} className="grid grid-cols-2 gap-4 border-t border-slate-200/80 pt-4">
-        {item.metrics.map((m, idx) => (
-          <div key={idx}>
-            <div className="text-xs font-mono text-slate-500">{m.label}</div>
-            <div className="text-xl font-mono font-extrabold text-slate-900 mt-0.5 tabular-nums">{m.value}</div>
-          </div>
-        ))}
-      </motion.div>
-    </motion.div>
-  );
-}
-
-export function Features() {
+export default function Features() {
+  const [page, setPage] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -350,47 +164,136 @@ export function Features() {
     offset: ["start start", "end end"],
   });
 
-  // تخفيف قليل في الكتلة (mass) لكي يكون الزنبرك ثقيلاً ولكن يستجيب فوراً للمس
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 30, 
-    damping: 30,
-    mass: 1.5,
-    restDelta: 0.001,
+  // Desktop Scroll Mapping: Drive the carousel via scroll position on md screens
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      let newPage = Math.floor(latest * featuresData.length);
+      if (newPage >= featuresData.length) newPage = featuresData.length - 1;
+      if (newPage !== page) setPage(newPage);
+    }
   });
 
-  return (
-    // قمنا بزيادة طول الصفحة إلى 500vh لإعطاء وقت أطول جداً للقراءة والتمرير بين الميزات
-    <section id="features" ref={containerRef} className="relative w-full h-[500vh] bg-[#FAFAFC] border-b border-slate-200/80">
+  const paginate = (newDirection: number) => {
+    const next = page + newDirection;
+    if (next < 0 || next >= featuresData.length) return;
+    setPage(next);
+  };
+
+  const handleDotClick = (idx: number) => {
+    if (typeof window !== "undefined" && window.innerWidth >= 768 && containerRef.current) {
+      // On desktop, scroll the page to the corresponding section to sync with scroll mapping
+      const rect = containerRef.current.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const scrollableDistance = containerRef.current.offsetHeight - window.innerHeight;
+      const segmentHeight = scrollableDistance / featuresData.length;
+      const centerScrollY = sectionTop + (idx * segmentHeight) + (segmentHeight / 2);
       
-      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center select-none">
+      window.scrollTo({ top: centerScrollY, behavior: "smooth" });
+    } else {
+      // On mobile, just update the state
+      setPage(idx);
+    }
+  };
 
-        {/* الدائرة اليسرى */}
-        <div
-          id="left-circle"
-          className="absolute top-1/2 -translate-y-1/2 right-[50%] mr-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
-        >
-          <div className="absolute top-1/2 -translate-y-1/2 right-[10vh] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
-            {featuresData.map((item, index) => (
-              <AnimatedLeftGraphic key={item.id} item={item} index={index} progress={smoothProgress} />
-            ))}
-          </div>
-        </div>
+  return (
+    <section id="features" ref={containerRef} className="relative w-full md:h-[900vh] bg-[#FAFAFC]">
+      {/* On mobile: normal static flow. On desktop: sticky to enable scroll-driven swipes */}
+      <div className="md:sticky md:top-0 min-h-[100svh] flex flex-col items-center justify-center overflow-hidden w-full py-20 relative">
+        <div className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[560px] h-[460px] sm:h-[480px] flex items-center justify-center perspective-1000 mt-4">
+          {featuresData.map((item, i) => {
+            const distance = i - page;
+            const isCenter = i === page;
 
-        {/* الدائرة اليمنى */}
-        <div
-          id="Right-circle"
-          className="absolute top-1/2 -translate-y-1/2 left-[50%] ml-[-3vh] w-[130vh] h-[130vh] rounded-full border-4 border-slate-200 bg-transparent pointer-events-none"
-        >
-          <div className="absolute top-1/2 -translate-y-1/2 left-[10vh] w-[40vw] max-w-[440px] h-[360px] flex items-center justify-center pointer-events-auto">
-            {featuresData.map((item, index) => (
-              <AnimatedRightText key={item.id} item={item} index={index} progress={smoothProgress} />
-            ))}
-          </div>
-        </div>
+            return (
+              <motion.div
+                key={item.id}
+                animate={{
+                  y: isCenter ? 0 : Math.abs(distance) * 40,
+                  rotate: distance * 12,
+                  scale: isCenter ? 1 : 1 - Math.abs(distance) * 0.08,
+                  filter: isCenter ? "blur(0px)" : `blur(${Math.abs(distance) * 3}px)`,
+                  opacity: isCenter ? 1 : Math.max(1 - Math.abs(distance) * 0.3, 0),
+                  zIndex: featuresData.length - Math.abs(distance),
+                }}
+                transition={{
+                  type: "spring",
+                  duration: 0.35,
+                  bounce: 0,
+                }}
+                whileTap={{ 
+                  scale: isCenter ? 0.99 : 1 - Math.abs(distance) * 0.08 - 0.01 
+                }}
+                // Drag is enabled, but on desktop scroll takes over naturally
+                drag={isCenter ? "x" : false}
+                dragSnapToOrigin={true}
+                dragConstraints={{ 
+                  left: page === featuresData.length - 1 ? 0 : -1000, 
+                  right: page === 0 ? 0 : 1000 
+                }}
+                dragElastic={0}
+                onDragEnd={(e, { offset, velocity }) => {
+                  if (!isCenter) return;
+                  if (offset.x < -40 || velocity.x < -100) {
+                    paginate(1);
+                  } else if (offset.x > 40 || velocity.x > 100) {
+                    paginate(-1);
+                  }
+                }}
+                style={{ transformOrigin: "bottom center" }}
+                className={`absolute w-[92%] sm:w-full h-full p-4 sm:p-5 bg-white rounded-3xl shadow-xl border border-slate-200/80 flex flex-col items-center justify-between will-change-transform overflow-hidden ${
+                  isCenter ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
+                }`}
+                onClick={() => handleDotClick(i)}
+              >
+              {/* Top Half: Graphic */}
+              <div className="w-full h-[40%] flex items-center justify-center bg-slate-50/80 rounded-xl mb-4 border border-slate-100/50">
+                <div className="w-full flex items-center justify-center transform scale-[0.60] sm:scale-[0.70]">
+                  {item.renderGraphic()}
+                </div>
+              </div>
 
+              {/* Bottom Half: Text & Metrics */}
+              <div className="w-full h-[60%] flex flex-col justify-between text-right" dir="rtl">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold w-fit mb-3">
+                    <span>{item.badge}</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-tight mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 border-t border-slate-200/80 pt-4 mt-auto">
+                  {item.metrics.map((m, idx) => (
+                    <div key={idx}>
+                      <div className="text-[10px] sm:text-xs font-mono text-slate-500">{m.label}</div>
+                      <div className="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-1 tabular-nums">{m.value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex items-center justify-center gap-3 mt-12 z-10" dir="ltr">
+        {featuresData.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setPage(idx)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              idx === page ? "bg-blue-600 scale-125" : "bg-slate-300 hover:bg-slate-400"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
       </div>
     </section>
   );
 }
-
-export default Features;

@@ -48,7 +48,7 @@ export default function Hero() {
       width: 572,
       height: 567,
       className:
-        "absolute -top-[-2%] -left-[21%] w-[45vw] min-w-[250px] -rotate-[-45deg] object-contain",
+        "absolute top-[12%] md:-top-[-2%] -left-[25%] md:-left-[21%] w-[65vw] md:w-[45vw] md:min-w-[250px] -rotate-[-45deg] object-contain",
       side: "left",
       delay: 0.1,
       xOffset: -160,
@@ -59,7 +59,7 @@ export default function Hero() {
       width: 289,
       height: 152,
       className:
-        "absolute top-[30%] left-[-10%] w-[38vw] min-w-[150px] -rotate-[1deg] object-contain",
+        "absolute top-[12%] md:top-[30%] right-[-5%] md:right-auto left-auto md:left-[-10%] rotate-[45deg] md:-rotate-[1deg] w-[48vw] md:w-[38vw] md:min-w-[150px] object-contain",
       side: "left",
       delay: 0.25,
       xOffset: -120,
@@ -70,7 +70,7 @@ export default function Hero() {
       width: 363,
       height: 350,
       className:
-        "absolute -bottom-[3%] -left-[15%] w-[45vw] min-w-[250px] -rotate-[-65deg] object-contain",
+        "absolute bottom-[12%] md:-bottom-[3%] -left-[15%] w-[65vw] md:w-[45vw] md:min-w-[250px] -rotate-[-65deg] object-contain",
       side: "left",
       delay: 0.4,
       xOffset: -140,
@@ -81,7 +81,7 @@ export default function Hero() {
       width: 320,
       height: 376,
       className:
-        "absolute -top-[29%] -right-[27%] w-[59vw] min-w-[220px] rotate-[-8deg] object-contain",
+        "absolute -top-[29%] -right-[27%] w-[70vw] md:w-[59vw] md:min-w-[220px] rotate-[-8deg] object-contain",
       side: "right",
       delay: 0.15,
       xOffset: 160,
@@ -92,7 +92,7 @@ export default function Hero() {
       width: 329,
       height: 344,
       className:
-        "absolute -bottom-[-2%] -right-[18%] w-[44vw] min-w-[250px] rotate-[57deg] object-contain",
+        "absolute -bottom-[-2%] -right-[18%] w-[55vw] md:w-[44vw] md:min-w-[250px] rotate-[57deg] object-contain",
       side: "right",
       delay: 0.3,
       xOffset: 140,
@@ -225,7 +225,7 @@ export default function Hero() {
       </motion.header>
 
       {/* Hero Central Content - Vertically centered in Hero section */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center my-auto pt-24 pb-12 space-y-5 sm:space-y-6">
+      <div className="relative z-20 max-w-4xl mx-auto px-4 text-center my-auto pt-24 pb-12 space-y-5 sm:space-y-6">
         <motion.h1
           initial={
             shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }
@@ -234,7 +234,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.2]"
         >
-          نظم ادارتك الطبية بلمح البصر من سجلات المرضى الى الفوترة 
+          حلول لأدارة عيادتك الطبية <span className="whitespace-nowrap">بدون تلف للبيانات</span>
         </motion.h1>
 
         <motion.p
@@ -254,21 +254,21 @@ export default function Hero() {
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2"
+          className="flex flex-row items-center justify-center gap-2 sm:gap-3 pt-2 w-full max-w-full"
         >
           <Button
             size="lg"
-            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-7 h-12 rounded-full shadow-md transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2"
+            className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[11px] sm:text-sm px-2 sm:px-7 h-11 sm:h-12 rounded-full shadow-md transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-1.5 sm:gap-2"
           >
-            <CalendarCheck size={18} weight="bold" />
-            <span>جدولة تدقيق الممارسة</span>
+            <CalendarCheck size={16} weight="bold" />
+            <span className="truncate">جدولة تدقيق الممارسة</span>
           </Button>
           <Button
             size="lg"
-            className="w-full sm:w-auto bg-white/90 hover:bg-white text-slate-900 border border-slate-200 font-semibold text-sm px-6 h-12 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2"
+            className="flex-1 sm:flex-none bg-white/90 hover:bg-white text-slate-900 border border-slate-200 font-semibold text-[11px] sm:text-sm px-2 sm:px-6 h-11 sm:h-12 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-1.5 sm:gap-2"
           >
-            <PhoneCall size={18} weight="bold" className="text-slate-600" />
-            <span>التحدث مع أخصائي</span>
+            <PhoneCall size={16} weight="bold" className="text-slate-600" />
+            <span className="truncate">التحدث مع أخصائي</span>
           </Button>
         </motion.div>
       </div>
