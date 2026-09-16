@@ -57,7 +57,7 @@ const tiers: PricingTier[] = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="w-full bg-[#FAFAFC] py-24 px-4 sm:px-6 lg:px-12 text-slate-900 border-b border-slate-200/80 relative dir-rtl" dir="rtl">
+    <section id="pricing" className="w-full bg-white py-24 px-4 sm:px-6 lg:px-12 text-slate-900 border-b border-slate-200/80 relative dir-rtl" dir="rtl">
       <div className="max-w-5xl mx-auto w-full">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">

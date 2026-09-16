@@ -2,14 +2,6 @@
 @plugin './hero.ts';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 
-@font-face {
-  font-family: 'Ping-Bold';
-  src: url('/fonts/Ping-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: #fafafc;
   --foreground: #0f172a;
@@ -18,12 +10,34 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-ping-bold), 'Ping-Bold', var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-ping-bold), var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
+  
+  /* Explicit utility fonts mapped to Next.js font variables */
+  --font-pingbold: var(--font-ping-bold);
+  --font-pinglight: var(--font-ping-light);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-ping-bold), 'Ping-Bold', var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-ping-bold), var(--font-geist-sans), system-ui, sans-serif;
+}
+
+
+
+/* Scroll Reel Testimonials CSS */
+@keyframes scroll-reel-rise {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.scroll-reel-char {
+  display: inline-block;
+  opacity: 0;
+  animation: scroll-reel-rise 0.5s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+.scroll-reel-exit {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s, transform 0.2s;
 }

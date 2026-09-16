@@ -100,7 +100,15 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative w-full min-h-[100vh] overflow-hidden bg-[url('/images/tiffany-bg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center">
+    <section className="relative w-full min-h-[80vh] md:min-h-[100vh] overflow-hidden bg-[url('/images/tiffany-bg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center">
+      {/* White Dotted Pattern Mask */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.4) 1.5px, transparent 1.5px)",
+          backgroundSize: "24px 24px"
+        }}
+      />
       {/* Top Navigation Bar - Sticky / Fixed Header with Scroll-driven morphing */}
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center"
@@ -232,9 +240,9 @@ export default function Hero() {
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.2]"
+          className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.2] drop-shadow-md"
         >
-          حلول لأدارة عيادتك الطبية <span className="whitespace-nowrap">بدون تلف للبيانات</span>
+          حول بيانات عيادتك الطبية <span className="whitespace-nowrap">لقرارات ذكية</span>
         </motion.h1>
 
         <motion.p
@@ -243,7 +251,7 @@ export default function Hero() {
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="text-base sm:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-normal"
+          className="text-base sm:text-xl text-white/95 max-w-2xl mx-auto leading-relaxed font-normal drop-shadow-sm"
         >
           اشرف على رحلة المريض من البداية الى النهاية واحفظها الكترونياً
         </motion.p>
@@ -254,20 +262,20 @@ export default function Hero() {
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-row items-center justify-center gap-2 sm:gap-3 pt-2 w-full max-w-full"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 w-full max-w-xs sm:max-w-full mx-auto"
         >
           <Button
             size="lg"
-            className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[11px] sm:text-sm px-2 sm:px-7 h-11 sm:h-12 rounded-full shadow-md transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-1.5 sm:gap-2"
+            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-7 h-12 rounded-full shadow-md transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2"
           >
-            <CalendarCheck size={16} weight="bold" />
+            <CalendarCheck size={18} weight="bold" />
             <span className="truncate">جدولة تدقيق الممارسة</span>
           </Button>
           <Button
             size="lg"
-            className="flex-1 sm:flex-none bg-white/90 hover:bg-white text-slate-900 border border-slate-200 font-semibold text-[11px] sm:text-sm px-2 sm:px-6 h-11 sm:h-12 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-1.5 sm:gap-2"
+            className="w-full sm:w-auto bg-white/90 hover:bg-white text-slate-900 border border-slate-200 font-semibold text-sm px-6 h-12 rounded-full shadow-xs transition-transform duration-150 ease-out active:scale-[0.97] flex items-center justify-center gap-2"
           >
-            <PhoneCall size={16} weight="bold" className="text-slate-600" />
+            <PhoneCall size={18} weight="bold" className="text-slate-600" />
             <span className="truncate">التحدث مع أخصائي</span>
           </Button>
         </motion.div>
@@ -280,7 +288,7 @@ export default function Hero() {
       {assets.map((asset) => (
         <motion.div
           key={asset.src}
-          className={`${asset.className} drop-shadow-2xl pointer-events-none z-10`}
+          className={`${asset.className} hidden md:block drop-shadow-2xl pointer-events-none z-10`}
           initial={
             shouldReduceMotion
               ? { opacity: 1, x: 0 }

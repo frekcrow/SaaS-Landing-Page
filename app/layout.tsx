@@ -11,6 +11,12 @@ const pingBold = localFont({
   display: "swap",
 });
 
+const pingLight = localFont({
+  src: "../public/fonts/Ping-Light.otf",
+  variable: "--font-ping-light",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Aura Clinical",
   description: "High-Performance Operating System for Modern Practices",
@@ -22,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="ar"
       dir="rtl"
       // قمنا بإزالة h-full من هنا لكي لا نقيد ارتفاع الصفحة
-      className={`${pingBold.variable} ${GeistSans.variable} ${GeistMono.variable} antialiased`}
+      className={`${pingBold.variable} ${pingLight.variable} ${GeistSans.variable} ${GeistMono.variable} antialiased`}
     >
       {/* قمنا بإزالة min-h-full flex flex-col لكي يعمل الـ Sticky براحته */}
       <body className="font-sans">
