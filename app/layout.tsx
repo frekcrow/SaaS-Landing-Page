@@ -18,8 +18,11 @@ const pingLight = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Aura Clinical",
+  title: "Atlas Health",
   description: "High-Performance Operating System for Modern Practices",
+  icons: {
+    icon: "/images/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
